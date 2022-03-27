@@ -9,3 +9,4 @@ sequelize.authenticate().then(function() {
 }).catch(function(erro) {
     console.log("Falha a conectar ao servidor: " + erro)
 })
+
