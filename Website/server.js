@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
-const bcrypt = require('bcrypt')
+
+// Ligar à base de dados
+const mysql = require('mysql');
+const userController = require('./controllers/user');
 
 app.use(express.json())
 
@@ -10,19 +13,19 @@ app.get('/users', (req, res) => {
     res.json(users)
 })
 
-app.post('/users', async(req, res) => {
+// app.post('/users', async(req, res) => {
 
-    //Encriptação da palavra passe
-    try {
-        const hashedPasswords = await bcrypt.hash(req.body.password, 10)
-        const user = { name: req.body.name, password: hashedPasswords }
-        users.push(user)
-        res.status(201).send()
-    } catch {
-        res.status(500).send()
-    }
+//     //Encriptação da palavra passe
+//     try {
+//         const hashedPasswords = await bcrypt.hash(req.body.password, 10)
+//         const user = { name: req.body.name, password: hashedPasswords }
+//         users.push(user)
+//         res.status(201).send()
+//     } catch {
+//         res.status(500).send()
+//     }
 
-})
+// })
 
 app.post('/users/login', async(req, res) => {
     const user = users.find(user => user.name === req.body.name)
@@ -40,6 +43,10 @@ app.post('/users/login', async(req, res) => {
         res.status(500).send()
     }
 
-})
+});
+
+app.post('/users/register', async(req, res) => {
+    userController.registerUser(req, res)
+});
 
 app.listen(3000)
