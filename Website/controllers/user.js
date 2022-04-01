@@ -14,7 +14,20 @@ function registerUser(req, res) {
 }
 
 function loginUser(req, res) {
-    console.log(req, res)
+    const user = users.find(user => user.name === req.body.name)
+    if(user == null)
+    {
+        return res.status(400).send('Utilizador não encontrado')
+    }
+    try{
+        if(await bcrypt.compare(req.body.password, user.password)){
+            res.send('Sucesso')
+        }else{
+            res.send('Não Autorizado')
+        }
+    }catch{
+        res.status(500).send()
+    }
 }
 
 
