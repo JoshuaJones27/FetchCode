@@ -1,5 +1,6 @@
 const express = require('express')
-const app = express()
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
 
 // Ligar à base de dados
 const mysql = require('mysql');
@@ -23,11 +24,14 @@ const userController = require('./controllers/user');
 
 app.use(express.json())
 
+const app = express();
+const PORT = 4000;
+
 const users = []
 
-app.get('/users', (req, res) => {
-    res.json(users)
-})
+// app.get('/users', (req, res) => {
+//     res.json(users)
+// })
 
 //sessions
 
@@ -74,6 +78,8 @@ app.use(sessions({
 
 app.post('/users/register', async(req, res) => {
     userController.registerUser(req, res)
+    userController.loginUser(req, res)
+    userController.getUser(req, res)
 });
 
 app.listen(3000)

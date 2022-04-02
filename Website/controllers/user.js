@@ -30,5 +30,8 @@ function loginUser(req, res) {
     }
 }
 
+function getUser(req, res){
+    res.json(users)
+}
 
-module.exports = {registerUser, loginUser}
+module.exports = {registerUser, loginUser, getUser}
