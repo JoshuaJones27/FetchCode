@@ -29,6 +29,17 @@ app.get('/users', (req, res) => {
     res.json(users)
 })
 
+//sessions
+
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialiazed: true,
+    cookie: {maxAge: oneDay},
+    resave: false
+}))
+
+
 // app.post('/users', async(req, res) => {
 
 //     //Encriptação da palavra passe
