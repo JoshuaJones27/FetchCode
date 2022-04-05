@@ -22,8 +22,6 @@ con.connect(function(err) {
 
 const userController = require('./controllers/user');
 
-app.use(express.json())
-
 const app = express();
 const PORT = 4000;
 
@@ -42,7 +40,6 @@ app.use(sessions({
     cookie: {maxAge: oneDay},
     resave: false
 }))
-
 
 // app.post('/users', async(req, res) => {
 
@@ -83,3 +80,28 @@ app.post('/users/register', async(req, res) => {
 });
 
 app.listen(3000)
+
+//parsing the incoming data
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+//serving public file
+app.use(express.static(_dirname))
+
+//cookie parser middleware
+app.use(cookieParser())
+
+//username and password
+const myusername = 'user1'
+const mypassword = 'mypassword'
+
+//a variable to save a session
+var session;
+
+app.get('/', (req, res) => {
+    session = req.session;
+    if (session.cliente.id){
+        res.send("Welcome User <a href=\'/logout'>click to logout</a>")
+    }else
+    res.sendFile('./Website/login.html', {root:dirname})
+})
