@@ -105,3 +105,5 @@ app.get('/', (req, res) => {
     }else
     res.sendFile('./Website/login.html', {root:dirname})
 })
+
+app.post()
