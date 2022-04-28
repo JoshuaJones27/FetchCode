@@ -11,21 +11,22 @@ var con = mysql.createConnection({
     password: 'sidyfgygIJS956_kjhvfddv87'
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-    con.query(sql, function(err, results) {
-        if (err) throw err;
-        console.log("Result: " + result);
-    });
-});
-
-const userController = require('./controllers/user');
-
-const app = express();
 const PORT = 4000;
 
-const users = []
+// con.connect(function(err) {
+//     if (err) throw err;
+//     console.log("Connected!");
+//     con.query(sql, function(err, results) {
+//         if (err) throw err;
+//         console.log("Result: " + result);
+//     });
+// });
+
+// const userController = require('./controllers/user');
+
+// const app = express();
+
+// const users = []
 
 // app.get('/users', (req, res) => {
 //     res.json(users)
@@ -33,13 +34,13 @@ const users = []
 
 //sessions
 
-const oneDay = 1000 * 60 * 60 * 24;
-app.use(sessions({
-    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-    saveUninitialiazed: true,
-    cookie: {maxAge: oneDay},
-    resave: false
-}))
+// const oneDay = 1000 * 60 * 60 * 24;
+// app.use(sessions({
+//     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+//     saveUninitialiazed: true,
+//     cookie: {maxAge: oneDay},
+//     resave: false
+// }))
 
 // app.post('/users', async(req, res) => {
 
@@ -73,37 +74,37 @@ app.use(sessions({
 //     }
 // });
 
-app.post('/users/register', async(req, res) => {
-    userController.registerUser(req, res)
-    userController.loginUser(req, res)
-    userController.getUser(req, res)
-});
+// app.post('/users/register', async(req, res) => {
+//     userController.registerUser(req, res)
+//     userController.loginUser(req, res)
+//     userController.getUser(req, res)
+// });
 
-app.listen(3000)
+// app.listen(3000)
 
-//parsing the incoming data
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+// //parsing the incoming data
+// app.use(express.json())
+// app.use(express.urlencoded({ extended: true }))
 
-//serving public file
-app.use(express.static(_dirname))
+// //serving public file
+// app.use(express.static(_dirname))
 
-//cookie parser middleware
-app.use(cookieParser())
+// //cookie parser middleware
+// app.use(cookieParser())
 
-//username and password
-const myusername = 'user1'
-const mypassword = 'mypassword'
+// //username and password
+// const myusername = 'user1'
+// const mypassword = 'mypassword'
 
-//a variable to save a session
-var session;
+// //a variable to save a session
+// //var session;
 
-app.get('/', (req, res) => {
-    session = req.session;
-    if (session.cliente.id){
-        res.send("Welcome User <a href=\'/logout'>click to logout</a>")
-    }else
-    res.sendFile('./Website/login.html', {root:dirname})
-})
+// app.get('/', (req, res) => {
+//     session = req.session;
+//     if (session.cliente.id){
+//         res.send("Welcome User <a href=\'/logout'>click to logout</a>")
+//     }else
+//     res.sendFile('./Website/login.html', {root:dirname})
+// })
 
-app.post()
+// app.post()
