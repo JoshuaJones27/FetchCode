@@ -79,7 +79,7 @@ module.exports = (app) => {
     const newUser = { ...req };
     newUser.palavraPasse = getPasswordHash(req.palavraPasse);
 
-    return app.db('utilizador').insert(newUser, ['id', 'nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais']);
+    return app.db('utilizador').insert(newUser, ['nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais']);
   };
 
   const update = async (req, res) => {
