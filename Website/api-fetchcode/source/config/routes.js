@@ -1,10 +1,10 @@
 module.exports = (app) => {
     // AUTH
     app.route('/auth/signin')
-      .post(app.routes.auths.signin);
+      .get(app.routes.utilizadores.getAll);
   
     app.route('/auth/signup')
-      .post(app.routes.auths.signup);
+      .post(app.routes.utilizadores.signup);
 
     // UTILIZADORES
     app.route('/utilizador')

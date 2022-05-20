@@ -1,6 +1,6 @@
 const supertest = require('supertest');
 
-const request = supertest('http://localhost:3001');
+const request = supertest('http://localhost:3000');
 
 test('Check if the server is up.', () => {
   return request.get('/')

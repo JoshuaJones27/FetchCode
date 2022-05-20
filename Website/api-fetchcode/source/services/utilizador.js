@@ -1,11 +1,15 @@
 const bcrypt = require('bcrypt-nodejs');
 const ValidationError = require('../errors/validationError');
 
-const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+//const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 module.exports = (app) => {
   const getAll = async () => {
+    return app.db('utilizador').select(['*']);
+  };
+
+  const findOne = async () => {
     const result = await app.db.query('SELECT * FROM utilizador');
     return result;
   };
@@ -26,7 +30,7 @@ module.exports = (app) => {
     if (!req.distrito) throw new ValidationError('O distrito é um campo obrigatorio');
     if (!req.pais) throw new ValidationError('O pais é um campo obrigatorio');
     if (!emailRegex.test(req.email)) throw new ValidationError('O email não segue os padrões convencionais!');
-    if (!passwordRegex.test(req.password)) throw new ValidationError('A password não segue os padrões convencionais!');
+    //if (!passwordRegex.test(req.password)) throw new ValidationError('A password não segue os padrões convencionais!');
 
     const userDBEmail = await findOne({ email: req.email });
     if (userDBEmail) throw new ValidationError('Email duplicado');
@@ -71,6 +75,7 @@ module.exports = (app) => {
   };
 
   return {
+    getAll,
     findOne,
     create,
     update,

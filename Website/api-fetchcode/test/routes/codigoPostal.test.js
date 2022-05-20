@@ -1,97 +1,44 @@
 const request = require('supertest');
 const jwt = require('jwt-simple');
-const app = require('../../src/app');
-const config = require('../../config');
+const app = require('../../source/app');
 
-const secret = config.authToken;
+const secret = '754321';
+
 const ROUTE = '/v1/codigoPostal';
-// let reportado;
-// let autor;
-// let report;
+let codPostalA;
 
 beforeAll(async () => {
-  const createUser = await app.services.user.create({
-    nome: 'Jose Mourinho',
-    nomeUtilizador: 'JotaMouri',
-    palavraPasse: 'jose123',
-    email: 'josemourinho96@ipca.pt',
-    telemovel: '916969696',
-    rua: 'Vila Frescainha',
-    cidade: 'Barcelos',
-    distrito: 'Braga',
-    pais: 'Portugal',
-    isFuncionario: '0',
-    isAdmin: '1',
-    isFuncionario: '0',
+  const codPostalA = await app.services.codigoPostal.create({
+    codPostal: '4700-289',
   });
 
-  user = { ...createUserA[0] };
-  user.token = jwt.encode(user, secret);
+  codPostalA = { ...createCodPostal[0] };
 });
 
-describe('Test #1 - Listar denúncias', () => {
-  test('Test #1.1 - Listar todas as denúncias', () => {
-    return request(app).get(ROUTE)
-      .set('authorization', `bearer ${autor.token}`)
-      .then((res) => {
-        expect(res.status).toBe(200);
-        expect(res.body.length).toBeGreaterThanOrEqual(0);
-      });
-  });
-
-  test('Test #1.2 - Listar uma denúncia por ID', () => {
-    return request(app).get(`${ROUTE}/${report.id_report}`)
-      .set('authorization', `bearer ${autor.token}`)
-      .then((res) => {
-        expect(res.status).toBe(200);
-        expect(res.body.descricao).toBe('Denuncia Para Teste');
-      });
-  });
-
-  test('Test #1.3 - Listar uma denúncia por ID de autor', () => {
-    return request(app).get(`${ROUTE}/author/${report.id_autor}`)
-      .set('authorization', `bearer ${autor.token}`)
-      .then((res) => {
-        expect(res.status).toBe(200);
-      });
-  });
-});
-
-test('Test #2 - Inserir uma denúncia', () => {
-  return request(app).post(ROUTE)
-    .set('authorization', `bearer ${autor.token}`)
-    .send({
-      motivo: 'Denuncia',
-      descricao: 'Denuncia',
-      id_autor: autor.id_utilizador,
-      id_reportado: reportado.id_utilizador,
-    })
+test('Test #1 - Listar os codigos postais', () => {
+  return request(app).get(ROUTE)
+    .set('authorization', `bearer ${codPostalA.id}`)
     .then((res) => {
-      expect(res.status).toBe(201);
-      expect(res.body.motivo).toBe('Denuncia');
+      expect(res.status).toBe(200);
+      expect(res.body.length).toBeGreaterThan(0);
     });
 });
 
-describe('Test #3 - Validação de parâmetros obrigatórios', () => {
-  const testTemplate = (data, errorMessage) => {
-    return request(app).post(ROUTE)
-      .set('authorization', `bearer ${autor.token}`)
-      .send({
-        motivo: 'Denuncia',
-        descricao: 'Denuncia',
-        id_autor: autor.id_utilizador,
-        id_reportado: reportado.id_utilizador,
-        ...data,
-      })
-      .then((res) => {
-        expect(res.status).toBe(400);
-        expect(res.body.error).toBe(errorMessage);
-      });
-  };
+test('Test #1.1 - Listar codigos postais por ID', () => {
+  return request(app).get(`${ROUTE}/${codPostalA.id}`)
+    .set('authorization', `bearer ${codPostalA.token}`)
+    .then((res) => {
+      expect(res.status).toBe(200);
+      expect(res.body.nome).toBe('4700-289');
+    });
+});
 
-  test('Test #3.1 - Inserir um report sem motivo', () => testTemplate({ motivo: null }, 'O motivo é um campo obrigatorio'));
-
-  test('Test #3.2 - Inserir um report sem ID do autor', () => testTemplate({ id_autor: null }, 'O ID do autor é um campo obrigatorio'));
-
-  test('Test #3.3 - Inserir um report sem ID reportado', () => testTemplate({ id_reportado: null }, 'O ID do reportado é um campo obrigatorio'));
+test('Test #3 - Apagar Código Postal', () => {
+  return app.db('codigopostal').insert({
+    codPostal: '4700-290',
+  }, ['id']).then((result) => request(app).delete(`${ROUTE}/${result[0].id}`)
+    .set('authorization', `bearer ${utilizador.token}`)
+    .then((res) => {
+      expect(res.status).toBe(204);
+    }));
 });

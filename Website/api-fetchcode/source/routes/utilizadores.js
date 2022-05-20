@@ -45,11 +45,5 @@ module.exports = (app) => {
     }
   });
 
-  router.put('/forget-password', (req, res, next) => {
-    app.services.user.forgotPassword(req.body)
-      .then(() => res.status(204).send())
-      .catch((err) => next(err));
-  });
-
   return router;
 };

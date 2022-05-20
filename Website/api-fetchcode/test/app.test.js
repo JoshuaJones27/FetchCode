@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../src/app');
+const app = require('../source/app');
 
 test('Check if there is a response.', () => {
   return request(app).get('/')
