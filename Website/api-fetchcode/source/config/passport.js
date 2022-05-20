@@ -1,8 +1,7 @@
 const passport = require('passport');
 const passportJwt = require('passport-jwt');
-const config = require('../../config');
 
-const secret = config.authToken;
+const secret = '123';
 
 const { Strategy, ExtractJwt } = passportJwt;
 

@@ -1,15 +1,27 @@
 const app = require('express')();
 const consign = require('consign');
-const knex = require('knex');
 const cors = require('cors');
-const knexfile = require('../knexfile');
+const mysql = require('mysql');
 
+const connection = mysql.createConnection({
+  host: 'fetchcodeserver.mysql.database.azure.com', 
+  port: 3306, 
+  database: 'fetchcode', 
+  user: 'FetchCode', 
+  password: 'sidyfgygIJS956_kjhvfddv87' 
+});
+
+connection.connect(function(err) {
+  if (err) console.error(err);
+  console.log("Connected to database!");
+});
+
+app.db = connection;
 app.use(cors());
-app.db = knex(knexfile.test);
 
-consign({ cwd: 'source', verbose: false })
+consign({ cwd: 'src', verbose: false })
   .include('./config/passport.js')
-  .then('./config/middlewares.js')
+  .include('./config/middlewares.js')
   .then('./services')
   .then('./routes')
   .then('./config/router.js')
