@@ -9,18 +9,6 @@ module.exports = (app) => {
             .catch((err) => next(err));
     });
 
-    router.get('/:id', (req, res, next) => {
-        app.services.transaction.findOne({ id: req.params.id })
-        .then((result) => res.status(200).json(result))
-        .catch((err) => next(err));
-    });
-
-    router.get('/author/:id', (req, res, next) => {
-        app.services.transaction.findClothes({ id: req.params.id })
-          .then((result) => res.status(200).json(result))
-          .catch((err) => next(err));
-    });
-
     router.post('/', async (req, res, next) => {
         try {
             const result = await app.services.transaction.create(req.body);
@@ -30,7 +18,7 @@ module.exports = (app) => {
         }
     });
 
-    router.put('/:id', (req, res, next) => {
+    router.delete('/:id', (req, res, next) => {
         app.services.transaction.update(req.params.id, req.body)
           .then((result) => res.status(204).json(result[0]))
           .catch((err) => next(err));
