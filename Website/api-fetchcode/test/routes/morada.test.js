@@ -8,14 +8,14 @@ const ROUTE = '/v1/morada';
 let moradaA;
 
 beforeAll(async () => {
-  const moradaA = await app.services.morada.create({
+  const createMoradaA = await app.services.morada.create({
     rua: 'Vila Frescainha',
     cidade: 'Barcelos',
     distrito: 'Braga',
     pais: 'Portugal',
   });
 
-  moradaA = { ...createMorada[0] };
+  moradaA = { ...createMoradaA[0] };
 });
 
 test('Test #1 - Listar as moradas', () => {

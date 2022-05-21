@@ -8,11 +8,11 @@ const ROUTE = '/v1/codigoPostal';
 let codPostalA;
 
 beforeAll(async () => {
-  const codPostalA = await app.services.codigoPostal.create({
+  const createCodPostalA = await app.services.codigoPostal.create({
     codPostal: '4700-289',
   });
 
-  codPostalA = { ...createCodPostal[0] };
+  codPostalA = { ...createCodPostalA[0] };
 });
 
 test('Test #1 - Listar os codigos postais', () => {

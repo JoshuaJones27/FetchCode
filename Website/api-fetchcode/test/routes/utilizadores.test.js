@@ -22,7 +22,7 @@ beforeAll(async () => {
     isAdmin: '0',
   });
 
-  userA = { ...createUser[0] };
+  userA = { ...createUserA[0] };
   userA.token = jwt.encode(userA, secret);
 });
 

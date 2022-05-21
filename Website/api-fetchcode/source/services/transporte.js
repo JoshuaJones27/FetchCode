@@ -1,12 +1,12 @@
 const ValidationError = require('../errors/validationError');
 
 module.exports = (app) => {
-    const findOne = (filter = {}) => {
-        return app.db('transporte').where(filter).select(['id', 'dataTransporte']);
-    }
+    // const findOne = (filter = {}) => {
+    //     return app.db('transporte').where(filter).select(['id', 'dataTransporte']);
+    // }
 
-    const findAll = async (filter = {}) => {
-        return app.db('transporte').where(filter).select(['id', 'dataTransporte']);
+    const getAll = async () => {
+        return app.db('transporte').select(['*']);
     };
 
     const create = async (req, res) => {
@@ -27,8 +27,8 @@ module.exports = (app) => {
     };
 
     return {
-        findOne,
-        findAll,
+        // findOne,
+        getAll,
         create,
         update,
         remove,
