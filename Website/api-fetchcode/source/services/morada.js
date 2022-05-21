@@ -5,8 +5,8 @@ module.exports = (app) => {
         return app.db('morada').where(filter).select(['id', 'rua', 'cidade', 'distrito', 'pais']);
     }
 
-    const findAll = async (filter = {}) => {
-        return app.db('morada').where(filter).select(['id', 'rua', 'cidade', 'distrito', 'pais']);
+    const getAll = async () => {
+        return app.db('morada').select(['*']);
     };
 
     const create = async (req, res) => {
@@ -31,7 +31,7 @@ module.exports = (app) => {
 
     return {
         findOne,
-        findAll,
+        getAll,
         create,
         update,
         remove,

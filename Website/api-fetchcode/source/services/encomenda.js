@@ -5,8 +5,8 @@ module.exports = (app) => {
         return app.db('encomenda').where(filter).select(['idEncomenda', 'encomendaDescricao', 'estado']);
     };
 
-    const findAll = async (filter= {}) => {
-        return app.db('encomenda').where(filter).select(['idEncomenda', 'encomendaDescricao', 'estado']);
+    const getAll = async () => {
+        return app.db('encomenda').select(['*']);
     };
 
     const create = async (req, res) => {
@@ -29,7 +29,7 @@ module.exports = (app) => {
 
     return {
         findOne,
-        findAll,
+        getAll,
         create,
         update,
         remove,

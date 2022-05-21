@@ -4,20 +4,20 @@ module.exports = (app) => {
     const router = express.Router();
 
     router.get('/', (req, res, next) => {
-        app.services.transaction.findAll()
+        app.services.encomenda.getAll()
             .then((result) => res.status(200).json(result))
             .catch((err) => next(err));
     });
 
     router.get('/:id', (req, res, next) => {
-        app.services.transaction.findOne({ idEncomenda: req.params.id })
+        app.services.encomenda.findOne({ idEncomenda: req.params.id })
         .then((result) => res.status(200).json(result))
         .catch((err) => next(err));
     });
 
-    router.post('/', async (req, res, next) => {
+    router.post('/create', async (req, res, next) => {
         try {
-            const result = await app.services.transaction.create(req.body);
+            const result = await app.services.encomenda.create(req.body);
             return res.status(201).json(result[0]);
         } catch (err) {
             return next(err);
@@ -25,7 +25,7 @@ module.exports = (app) => {
     });
 
     router.put('/:id', (req, res, next) => {
-        app.services.transaction.update(req.params.id, req.body)
+        app.services.encomenda.update(req.params.id, req.body)
           .then((result) => res.status(204).json(result[0]))
           .catch((err) => next(err));
     });
