@@ -10,8 +10,9 @@ module.exports = (app) => {
   };
 
   const findOne = async () => {
-    const result = await app.db.query('SELECT * FROM utilizador');
-    return result;
+    // const result = await app.db.query('SELECT * FROM utilizador');
+    // return result;
+    return app.db('utilizador').select(['*']);
   };
 
   const getPasswordHash = (password) => {
@@ -32,11 +33,11 @@ module.exports = (app) => {
     if (!emailRegex.test(req.email)) throw new ValidationError('O email não segue os padrões convencionais!');
     //if (!passwordRegex.test(req.password)) throw new ValidationError('A password não segue os padrões convencionais!');
 
-    const userDBEmail = await findOne({ email: req.email });
-    if (userDBEmail) throw new ValidationError('Email duplicado');
+    // const userDBEmail = await findOne({ email: req.email });
+    // if (userDBEmail) throw new ValidationError('Email duplicado');
 
-    const userDBNTelemovel = await findOne({ telemovel: req.telemovel });
-    if (userDBNTelemovel) throw new ValidationError('Número telemóvel duplicado');
+    // const userDBNTelemovel = await findOne({ telemovel: req.telemovel });
+    // if (userDBNTelemovel) throw new ValidationError('Número telemóvel duplicado');
 
     const newUser = { ...req };
     newUser.palavraPasse = getPasswordHash(req.palavraPasse);

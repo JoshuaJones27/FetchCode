@@ -10,9 +10,9 @@ let userA;
 beforeAll(async () => {
   const createUserA = await app.services.utilizador.create({
     nome: 'Jose Mourinho',
-    nomeUtilizador: 'josemourinho69',
-    palavraPasse: 'Zezinho_69123',
-    email: 'zemourixd@ipca.pt',
+    nomeUtilizador: 'josemourinho69V2',
+    palavraPasse: 'Zezinho_69123V2',
+    email: 'zemourixdV2@ipca.pt',
     telemovel: '969696969',
     rua: 'Vila Frescainha',
     cidade: 'Barcelos',
@@ -67,7 +67,7 @@ test('Test #2 - Atualizar dados de um utilizador', () => {
     isFuncionario: '0',
     isAdmin: '1',
   }, ['id']).then((result) => request(app).put(`${ROUTE}/${result[0].id}`)
-    .set('authorization', `bearer ${utilizador.token}`)
+    .set('authorization', `bearer ${userA.token}`)
     .send({ nome: 'User Updated' })
     .then((res) => {
       expect(res.status).toBe(200);
@@ -89,7 +89,7 @@ test('Test #3 - Apagar utilizador', () => {
     isFuncionario: '0',
     isAdmin: '1',
   }, ['id']).then((result) => request(app).delete(`${ROUTE}/${result[0].id}`)
-    .set('authorization', `bearer ${utilizador.token}`)
+    .set('authorization', `bearer ${userA.token}`)
     .then((res) => {
       expect(res.status).toBe(204);
     }));
