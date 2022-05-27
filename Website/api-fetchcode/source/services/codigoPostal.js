@@ -9,6 +9,10 @@ module.exports = (app) => {
         return app.db('codigopostal').select(['*']);
     };
 
+    const getAllCodPost = async (filter) => {
+        return app.db('codigopostal').where(filter).select(['*']);
+    };
+
     const create = async (req, res) => {
         if(!req.codPostal) throw new ValidationError('O Codigo Postal é um campo obrigatorio');
 
@@ -21,13 +25,14 @@ module.exports = (app) => {
 //         return app.db('codigopostal').insert([newCodigopostal, 'codPostal']);
 // };
 
-    const remove = async (id) => {
+    const remove = async (id) => {S
         return app.db('codigopostal').where({ id }).del();
     };
 
     return {
         // findOne,
         getAll,
+        getAllCodPost,
         create,
         // update,
         remove,

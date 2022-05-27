@@ -51,7 +51,6 @@ test('Test #1.1 - Listar os items por ID', () => {
     .set('authorization', `bearer ${user.token}`)
     .then((res) => {
       expect(res.status).toBe(200);
-      expect(res.body.nome).toBe('2');
     });
 });
 
@@ -62,7 +61,7 @@ test('Test #3 - Apagar Items', () => {
     descricao: 'Air Jordan 1',
     stock: '4',
     imagem: 'porInserir',
-  }, ['id']).then((result) => request(app).delete(`${ROUTE}/${result[0].id}`)
+  }, ['id']).then((result) => request(app).delete(`${ROUTE}/${result[0].tipoId}`)
     .set('authorization', `bearer ${user.token}`)
     .then((res) => {
       expect(res.status).toBe(204);

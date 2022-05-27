@@ -15,7 +15,7 @@ module.exports = (app) => {
   });
 
   router.post('/signin', (req, res, next) => {
-    app.services.user.findOne({ email: req.body.email })
+    app.services.utilizador.findOne({ email: req.body.email })
       .then((user) => {
         if (!user) throw new ValidationError('Autenticação inválida! #2');
 
@@ -36,9 +36,15 @@ module.exports = (app) => {
       }).catch((err) => next(err));
   });
 
+  router.put('/:id', (req, res, next) => {
+    app.services.utilizador.update(req.params.id, req.body)
+      .then((result) => res.status(204).json(result[0]))
+      .catch((err) => next(err));
+  });
+
   router.post('/signup', async (req, res, next) => {
     try {
-      const result = await app.services.user.create(req.body);
+      const result = await app.services.utilizador.create(req.body);
       return res.status(201).json(result[0]);
     } catch (err) {
       return next(err);

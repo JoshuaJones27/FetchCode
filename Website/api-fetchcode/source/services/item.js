@@ -9,6 +9,10 @@ module.exports = (app) => {
         return app.db('item').select(['*']);
     };
 
+    const getAllID = async (filter) => {
+        return app.db('item').where(filter).select(['*']);
+    };
+
     //const findItemByColor = 
 
     const create = async (req, res) => {
@@ -29,13 +33,14 @@ module.exports = (app) => {
     };
 
     const remove = async (id) => {
-        return app.db('item').where({ id }).del();
+        return app.db('item').where(id).del();
     };
 
     return {
         // findOne,
         //findItemByColor,
         getAll,
+        getAllID,
         create,
         update,
         remove,

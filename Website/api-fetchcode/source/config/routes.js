@@ -27,6 +27,12 @@ module.exports = (app) => {
       .get(app.routes.codigosPostais.getAll)
       .delete(app.routes.codigosPostais.remove);
 
+    app.route('/codigoPostal/:id')
+      .all(app.config.passport.authenticate())
+      .get(app.routes.codigosPostais.getAllCodPost)
+      .post(app.routes.codigosPostais.create)
+      .delete(app.routes.codigosPostais.remove);
+
     // COR
     app.route('/cor')
       .all(app.config.passport.authenticate())
@@ -34,12 +40,24 @@ module.exports = (app) => {
       .post(app.routes.cores.create)
       .delete(app.routes.cores.remove);
 
+    app.route('/cor/:id')
+      .all(app.config.passport.authenticate())
+      .get(app.routes.codigosPostais.getAllCodPost)
+      .post(app.routes.codigosPostais.create)
+      .delete(app.routes.codigosPostais.remove);    
+
     // ITEM
     app.route('/item')
       .all(app.config.passport.authenticate())
       .get(app.routes.itens.getAll)
       .post(app.routes.itens.create)
+
+    app.route('/item/:id')
+      .all(app.config.passport.authenticate())
+      .get(app.routes.itens.getAll)
+      .post(app.routes.itens.create)
       .delete(app.routes.itens.remove);
+    
 
     // app.route('/item/cor/:id')
     //   .all(app.config.passport.authenticate())
@@ -50,27 +68,28 @@ module.exports = (app) => {
       .all(app.config.passport.authenticate())
       .get(app.routes.moradas.getAll)
       .post(app.routes.moradas.create)
-      .delete(app.routes.moradas.delete);
+      .delete(app.routes.moradas.remove);
  
     // PAGAMENTO
     app.route('/pagamento')
     .all(app.config.passport.authenticate())
     .get(app.routes.pagamentos.getAll)
     .post(app.routes.pagamentos.create)
-    .delete(app.routes.pagamentos.delete);
+    .delete(app.routes.pagamentos.remove);
 
     // TIPOS ITENS
     app.route('/tipoItem')
     .all(app.config.passport.authenticate())
     .get(app.routes.tipoItens.getAll)
     .post(app.routes.tipoItens.create)
-    .delete(app.routes.tipoItens.delete);
+    .delete(app.routes.tipoItens.remove);
+    
 
     // TRANSPORTES
     app.route('/transporte')
     .all(app.config.passport.authenticate())
     .get(app.routes.transportes.getAll)
     .post(app.routes.transportes.create)
-    .delete(app.routes.transportes.delete);
+    .delete(app.routes.transportes.remove);
   };
   

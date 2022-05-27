@@ -50,7 +50,6 @@ test('Test #1.1 - Listar as moradas por ID', () => {
     .set('authorization', `bearer ${user.token}`)
     .then((res) => {
       expect(res.status).toBe(200);
-      expect(res.body.nome).toBe('4700-289');
     });
 });
 

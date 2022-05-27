@@ -18,8 +18,16 @@ module.exports = (app) => {
         }
     });
 
+    router.get('/:id', (req, res, next) => {
+        app.services.codigoPostal.getAllCodPost({ id: req.params.id })
+        .then((result) => res.status(200).json(result))
+        .catch((err) => next(err));
+    });
+
+    
+
     router.delete('/:id', (req, res, next) => {
-        app.services.codigoPostal.update(req.params.id, req.body)
+        app.services.codigoPostal.remove(req.params.id)
           .then((result) => res.status(204).json(result[0]))
           .catch((err) => next(err));
     });

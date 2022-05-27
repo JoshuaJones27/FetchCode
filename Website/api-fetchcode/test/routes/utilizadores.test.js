@@ -55,6 +55,7 @@ test('Test #1.2 - Listar os utilizadores por nome', () => {
 
 test('Test #2 - Atualizar dados de um utilizador', () => {
   return app.db('utilizador').insert({
+    // id: '9999',
     nome: 'Jose Mourinho',
     nomeUtilizador: 'ZezitoMouri69',
     palavraPasse: 'Zezinho_6912322',
@@ -70,7 +71,7 @@ test('Test #2 - Atualizar dados de um utilizador', () => {
     .set('authorization', `bearer ${userA.token}`)
     .send({ nome: 'User Updated' })
     .then((res) => {
-      expect(res.status).toBe(200);
+      expect(res.status).toBe(204);
       expect(res.body[0].nome).toBe('User Updated');
     }));
 });

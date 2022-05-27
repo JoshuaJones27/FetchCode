@@ -9,6 +9,10 @@ module.exports = (app) => {
         return app.db('cor').select(['*']);
     };
 
+    const getAllIdCor = async (filter) => {
+        return app.db('cor').where(filter).select(['*']);
+    };
+
     const create = async (req, res) => {
         if(!req.cor) throw new ValidationError('A cor é um campo obrigatorio');
 
@@ -29,6 +33,7 @@ module.exports = (app) => {
     return {
         // findOne,
         getAll,
+        getAllIdCor,
         create,
         update,
         remove,

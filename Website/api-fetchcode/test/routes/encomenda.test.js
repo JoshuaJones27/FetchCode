@@ -49,7 +49,6 @@ test('Test #1.1 - Listar encomendas por ID', () => {
     .set('authorization', `bearer ${user.token}`)
     .then((res) => {
       expect(res.status).toBe(200);
-      expect(res.body.nome).toBe('Air Jordan 1');
     });
 });
 

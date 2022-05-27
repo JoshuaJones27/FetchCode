@@ -50,7 +50,7 @@ module.exports = (app) => {
 
     console.log(req)
 
-    return app.db('utilizador').where({ id }).update(req, ['id', 'nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais']);
+    return app.db('utilizador').where(req).update(res, ['nome']);
   };
 
   const remove = async (id) => {
