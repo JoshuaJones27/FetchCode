@@ -55,7 +55,7 @@ test('Test #1.1 - Listar cores por ID', () => {
 
 test('Test #3 - Apagar Cor', () => {
   return app.db('cor').insert({
-    codPostal: '4700-290',
+    cor: 'verde',
   }, ['id']).then((result) => request(app).delete(`${ROUTE}/${result[0].id}`)
     .set('authorization', `bearer ${user.token}`)
     .then((res) => {

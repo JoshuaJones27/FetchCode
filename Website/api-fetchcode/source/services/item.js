@@ -9,6 +9,8 @@ module.exports = (app) => {
         return app.db('item').select(['*']);
     };
 
+    //const findItemByColor = 
+
     const create = async (req, res) => {
         if(!req.tipoId) throw new ValidationError('O tipo de ID é um campo obrigatorio');
         if(!req.tamanho) throw new ValidationError('O tipo de tamanho é um campo obrigatorio');
@@ -32,6 +34,7 @@ module.exports = (app) => {
 
     return {
         // findOne,
+        //findItemByColor,
         getAll,
         create,
         update,

@@ -16,11 +16,11 @@ module.exports = (app) => {
         return app.db('cor').insert(newCor, ['cor']);
     };
 
-    // const update = async (req, res) => {
-    //     console.log(req)
+    const update = async (req, res) => {
+        console.log(req)
 
-    //     return app.db('cor').insert([newCor, 'cor']);
-    // };
+        return app.db('cor').insert([newCor, 'cor']);
+    };
 
     const remove = async (id) => {
         return app.db('cor').where({ id }).del();
@@ -30,7 +30,7 @@ module.exports = (app) => {
         // findOne,
         getAll,
         create,
-        // update,
+        update,
         remove,
     };
 };

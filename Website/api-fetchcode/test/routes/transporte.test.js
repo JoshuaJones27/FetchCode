@@ -54,7 +54,7 @@ test('Test #1.1 - Listar transportes por ID', () => {
 
 test('Test #3 - Apagar Transporte', () => {
   return app.db('transporte').insert({
-    codPostal: '4700-290',
+    dataTransporte: '2022-05-21 00:00:00',
   }, ['id']).then((result) => request(app).delete(`${ROUTE}/${result[0].id}`)
     .set('authorization', `bearer ${user.token}`)
     .then((res) => {

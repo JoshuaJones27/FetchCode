@@ -6,6 +6,9 @@ module.exports = (app) => {
     app.route('/auth/signup')
       .post(app.routes.utilizadores.signup);
 
+    app.route('/auth/forget-password')
+      .put(app.routes.users.forgotPassword());
+
     // UTILIZADORES
     app.route('/utilizador')
       .all(app.config.passport.authenticate())
@@ -17,7 +20,6 @@ module.exports = (app) => {
       .get(app.routes.utilizadores.findOne)
       .put(app.routes.utilizadores.update)
       .delete(app.routes.utilizadores.remove)
-      .patch(app.routes.utilizadores.deactivateAccount);
 
     // CODIGO POSTAL
     app.route('/codigoPostal')
@@ -38,6 +40,10 @@ module.exports = (app) => {
       .get(app.routes.itens.getAll)
       .post(app.routes.itens.create)
       .delete(app.routes.itens.remove);
+
+    // app.route('/item/cor/:id')
+    //   .all(app.config.passport.authenticate())
+    //   .get(app.routes.itens.findItemByColor);
 
     // MORADA
     app.route('/morada')
