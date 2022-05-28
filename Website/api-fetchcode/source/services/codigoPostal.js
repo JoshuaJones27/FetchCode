@@ -20,12 +20,12 @@ module.exports = (app) => {
         return app.db('codigopostal').insert(newCodigopostal, ['codPostal']);
     };
 
-//     const update = async (req, res) => {
-//         console.log(req)
-//         return app.db('codigopostal').insert([newCodigopostal, 'codPostal']);
-// };
+    const update = async (req, res) => {
+        console.log(req)
+        return app.db('codigopostal').insert([newCodigopostal, 'codPostal']);
+};
 
-    const remove = async (id) => {S
+    const remove = async (id) => {
         return app.db('codigopostal').where({ id }).del();
     };
 
@@ -34,7 +34,7 @@ module.exports = (app) => {
         getAll,
         getAllCodPost,
         create,
-        // update,
+        update,
         remove,
     };
 };

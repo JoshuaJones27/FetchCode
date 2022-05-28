@@ -9,11 +9,13 @@ module.exports = (app) => {
     return app.db('utilizador').select(['*']);
   };
 
-  const findOne = async () => {
-    // const result = await app.db.query('SELECT * FROM utilizador');
-    // return result;
-    return app.db('utilizador').select(['*']);
+  const getAllName = async () => {
+    return app.db('utilizador').select(['id', 'nome']);
   };
+
+  const findOne = (filter = {}) => {
+    return app.db('utilizador').where(filter).select(['id', 'nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais', 'isFuncionario', 'isAdmin', 'token']);
+}
 
   const getPasswordHash = (password) => {
     const salt = bcrypt.genSaltSync(10);
@@ -77,6 +79,7 @@ module.exports = (app) => {
 
   return {
     getAll,
+    getAllName,
     findOne,
     create,
     update,

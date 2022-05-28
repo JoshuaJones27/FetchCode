@@ -13,6 +13,7 @@ module.exports = (app) => {
     app.route('/utilizador')
       .all(app.config.passport.authenticate())
       .get(app.routes.utilizadores.getAll)
+      .get(app.routes.utilizadores.getAllName)
       .post(app.routes.utilizadores.create);
   
     app.route('/utilizador/:id')
@@ -25,6 +26,7 @@ module.exports = (app) => {
     app.route('/codigoPostal')
       .all(app.config.passport.authenticate())
       .get(app.routes.codigosPostais.getAll)
+      .post(app.routes.codigosPostais.create)
       .delete(app.routes.codigosPostais.remove);
 
     app.route('/codigoPostal/:id')
@@ -42,9 +44,9 @@ module.exports = (app) => {
 
     app.route('/cor/:id')
       .all(app.config.passport.authenticate())
-      .get(app.routes.codigosPostais.getAllCodPost)
-      .post(app.routes.codigosPostais.create)
-      .delete(app.routes.codigosPostais.remove);    
+      .get(app.routes.cores.getAllIdCor)
+      .post(app.routes.cores.create)
+      .delete(app.routes.cores.remove);    
 
     // ITEM
     app.route('/item')
@@ -58,11 +60,6 @@ module.exports = (app) => {
       .post(app.routes.itens.create)
       .delete(app.routes.itens.remove);
     
-
-    // app.route('/item/cor/:id')
-    //   .all(app.config.passport.authenticate())
-    //   .get(app.routes.itens.findItemByColor);
-
     // MORADA
     app.route('/morada')
       .all(app.config.passport.authenticate())
@@ -70,6 +67,12 @@ module.exports = (app) => {
       .post(app.routes.moradas.create)
       .delete(app.routes.moradas.remove);
  
+    app.route('/morada/:id')
+     .all(app.config.passport.authenticate())
+     .get(app.routes.moradas.getAll)
+     .post(app.routes.moradas.create)
+     .delete(app.routes.moradas.remove);  
+
     // PAGAMENTO
     app.route('/pagamento')
     .all(app.config.passport.authenticate())
@@ -91,5 +94,11 @@ module.exports = (app) => {
     .get(app.routes.transportes.getAll)
     .post(app.routes.transportes.create)
     .delete(app.routes.transportes.remove);
+
+    app.route('/transporte/:id')
+    .all(app.config.passport.authenticate())
+    .get(app.routes.transportes.getAll)
+    .post(app.routes.transportes.create)
+    .delete(app.routes.transportes.remove); 
+
   };
-  

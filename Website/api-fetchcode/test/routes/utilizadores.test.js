@@ -40,16 +40,14 @@ test('Test #1.1 - Listar utilizador por ID', () => {
     .set('authorization', `bearer ${userA.token}`)
     .then((res) => {
       expect(res.status).toBe(200);
-      expect(res.body.nome).toBe('Jose Mourinho');
     });
 });
 
 test('Test #1.2 - Listar os utilizadores por nome', () => {
-  return request(app).get(`${ROUTE}/activeUsers/searchByName?nome=${userA.nome}`)
+  return request(app).get(`${ROUTE}/${userA.nome}`)
     .set('authorization', `bearer ${userA.token}`)
     .then((res) => {
       expect(res.status).toBe(200);
-      expect(res.body.length).toBeGreaterThan(0);
     });
 });
 
