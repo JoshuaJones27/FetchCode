@@ -80,14 +80,25 @@ module.exports = (app) => {
     .post(app.routes.pagamentos.create)
     .delete(app.routes.pagamentos.remove);
 
+    app.route('/pagamento/:id')
+    .all(app.config.passport.authenticate())
+    .get(app.routes.pagamentos.getAll)
+    .post(app.routes.pagamentos.create)
+    .delete(app.routes.pagamentos.remove);
+
     // TIPOS ITENS
     app.route('/tipoItem')
     .all(app.config.passport.authenticate())
     .get(app.routes.tipoItens.getAll)
     .post(app.routes.tipoItens.create)
     .delete(app.routes.tipoItens.remove);
-    
 
+    app.route('/tipoItem/:id')
+    .all(app.config.passport.authenticate())
+    .get(app.routes.tipoItens.getAll)
+    .post(app.routes.tipoItens.create)
+    .delete(app.routes.tipoItens.remove);
+    
     // TRANSPORTES
     app.route('/transporte')
     .all(app.config.passport.authenticate())
