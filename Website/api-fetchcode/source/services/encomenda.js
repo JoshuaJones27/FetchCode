@@ -2,7 +2,7 @@ const ValidationError = require('../errors/validationError');
 
 module.exports = (app) => {
     const findOne = (filter= {}) => {
-        return app.db('encomenda').where(filter).select(['idEncomenda', 'encomendaDescricao', 'estado']);
+        return app.db('encomenda').where(filter).select(['idEncomenda', 'encomendaDescricao', 'estado', 'Transporte_id', 'Pagamento_id', 'Utilizador_idUtilizador']);
     };
 
     const getAll = async () => {
@@ -14,13 +14,13 @@ module.exports = (app) => {
         if(!req.estado) throw new ValidationError('O estado da encomenda é um campo obrigatorio');
 
         const newEncomenda = {...req};
-        return app.db('encomenda').insert(newEncomenda, ['encomendaDescricao', 'estado']);
+        return app.db('encomenda').insert(newEncomenda, ['encomendaDescricao', 'estado', 'Transporte_id', 'Pagamento_id', 'Utilizador_idUtilizador']);
     };
 
     const update = async (req, res) => {
         console.log(req)
 
-        return app.db('encomenda').insert([newEncomenda, 'encomendaDescricao', 'estado']);
+        return app.db('encomenda').insert([newEncomenda, 'encomendaDescricao', 'estado', 'Transporte_id', 'Pagamento_id', 'Utilizador_idUtilizador']);
     };
 
     const remove = async (id) => {

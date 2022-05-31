@@ -21,7 +21,7 @@ module.exports = (app) => {
   });
 
   router.get('/:id', (req, res, next) => {
-    app.services.utilizador.findOne({ id: req.params.id })
+    app.services.utilizador.findOne({ idUtilizador: req.params.id })
     .then((result) => res.status(200).json(result))
     .catch((err) => next(err));
 });
@@ -32,12 +32,12 @@ module.exports = (app) => {
         if (!user) throw new ValidationError('Autenticação inválida! #2');
 
         const {
-          id, email, telemovel,
+          idUtilizador, email, telemovel,
         } = user;
 
         if (bcrypt.compareSync(req.body.password, user.password)) {
           const payload = {
-            id,
+            idUtilizador,
             email,
             telemovel,
           };

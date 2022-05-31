@@ -30,6 +30,9 @@ beforeAll(async () => {
   const createEncomendaA = await app.services.encomenda.create({
     encomendaDescricao: 'Air Jordan 1',
     estado: '0',
+    Transporte_id: '4',
+    Pagamento_id: '4',
+    Utilizador_idUtilizador: '4',
   });
 
   encomendaA = { ...createEncomendaA[0] };
@@ -56,9 +59,15 @@ test('Test #3 - Apagar Encomenda', () => {
   return app.db('encomenda').insert({
     encomendaDescricao: 'Air Jordan 1',
     estado: '0',
-  }, ['id']).then((result) => request(app).delete(`${ROUTE}/${result[0].id}`)
-    .set('authorization', `bearer ${user.token}`)
-    .then((res) => {
-      expect(res.status).toBe(204);
-    }));
+    Transporte_id: '4',
+    Pagamento_id: '4',
+    Utilizador_idUtilizador: '4',
+  }, ['idEncomenda']).then((result) =>{
+    expect(result).toBe();
+  }
+  //  request(app).delete(`${ROUTE}/${result[0]}`)
+  //   .set('authorization', `bearer ${user.token}`)
+  //   .then((res) => {
+  //     expect(res.status).toBe(204);
+  //   }));
 });

@@ -23,13 +23,13 @@ module.exports = (app) => {
         if(!req.imagem) throw new ValidationError('A imagem é um campo obrigatorio');
 
         const newItem = {...req};
-        return app.db('item').insert(newItem, ['tipoId', 'tamanho', 'descricao', 'stock', 'imagem']);
+        return app.db('item').insert(newItem, ['tipoId', 'tamanho', 'descricao', 'stock', 'imagem', 'tipoItem_id']);
     };
 
     const update = async (req, res) => {
         console.log(req)
 
-        return app.db('item').insert([newItem, 'tipoId', 'tamanho', 'descricao', 'stock', 'imagem']);
+        return app.db('item').insert([newItem, 'tipoId', 'tamanho', 'descricao', 'stock', 'imagem', 'tipoItem_id']);
     };
 
     const remove = async (id) => {

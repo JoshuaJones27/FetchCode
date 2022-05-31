@@ -36,7 +36,7 @@ test('Test #1 - Listar os utilizadores', () => {
 });
 
 test('Test #1.1 - Listar utilizador por ID', () => {
-  return request(app).get(`${ROUTE}/${userA.id}`)
+  return request(app).get(`${ROUTE}/${userA.idUtilizador}`)
     .set('authorization', `bearer ${userA.token}`)
     .then((res) => {
       expect(res.status).toBe(200);
@@ -65,7 +65,7 @@ test('Test #2 - Atualizar dados de um utilizador', () => {
     pais: 'Inglaterra',
     isFuncionario: '0',
     isAdmin: '1',
-  }, ['id']).then((result) => request(app).put(`${ROUTE}/${result[0].id}`)
+  }, ['idUtilizador']).then((result) => request(app).put(`${ROUTE}/${result[0]}`)
     .set('authorization', `bearer ${userA.token}`)
     .send({ nome: 'User Updated' })
     .then((res) => {
@@ -87,9 +87,12 @@ test('Test #3 - Apagar utilizador', () => {
     pais: 'Inglaterra',
     isFuncionario: '0',
     isAdmin: '1',
-  }, ['id']).then((result) => request(app).delete(`${ROUTE}/${result[0].id}`)
+  }, ['idUtilizador']).then((result) =>{
+    request(app).delete(`${ROUTE}/${result[0]}`)
     .set('authorization', `bearer ${userA.token}`)
     .then((res) => {
       expect(res.status).toBe(204);
-    }));
+    }
+    );
+  })
 });

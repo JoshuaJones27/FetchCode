@@ -2,7 +2,7 @@ const ValidationError = require('../errors/validationError');
 
 module.exports = (app) => {
     const findOne = (filter = {}) => {
-        return app.db('morada').where(filter).select(['id', 'rua', 'cidade', 'distrito', 'pais']);
+        return app.db('morada').where(filter).select(['id', 'rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
     }
 
     const getAll = async () => {
@@ -16,13 +16,13 @@ module.exports = (app) => {
         if(!req.pais) throw new ValidationError('O pais é um campo obrigatorio');
 
         const newMorada = {...req};
-        return app.db('morada').insert(newMorada, ['rua', 'cidade', 'distrito', 'pais']);
+        return app.db('morada').insert(newMorada, ['rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
     };
 
     const update = async (req, res) => {
         console.log(req)
 
-        return app.db('morada').insert([newMorada, 'rua', 'cidade', 'distrito', 'pais']);
+        return app.db('morada').insert([newMorada, 'rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
     };
 
     const remove = async (id) => {

@@ -10,11 +10,11 @@ module.exports = (app) => {
   };
 
   const getAllName = async () => {
-    return app.db('utilizador').select(['id', 'nome']);
+    return app.db('utilizador').select(['idUtilizador', 'nome']);
   };
 
   const findOne = (filter = {}) => {
-    return app.db('utilizador').where(filter).select(['id', 'nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais', 'isFuncionario', 'isAdmin', 'token']);
+    return app.db('utilizador').where(filter).select(['idUtilizador', 'nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais', 'isFuncionario', 'isAdmin', 'token']);
 }
 
   const getPasswordHash = (password) => {
@@ -56,7 +56,7 @@ module.exports = (app) => {
   };
 
   const remove = async (id) => {
-    return app.db('utilizador').where({ id }).del();
+    return app.db('utilizador').where({ idUtilizador: id }).del();
   };
 
   const forgotPassword = async (req, res) => {

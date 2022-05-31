@@ -29,6 +29,12 @@ module.exports = (app) => {
           .then((result) => res.status(204).json(result[0]))
           .catch((err) => next(err));
     });
+
+    router.delete('/:id', (req, res, next) => {
+        app.services.encomenda.remove(req.params.id)
+          .then((result) => res.status(204).json(result[0]))
+          .catch((err) => next(err));
+    });
     
     return router;
 };

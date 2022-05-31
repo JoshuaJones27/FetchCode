@@ -32,6 +32,7 @@ beforeAll(async () => {
     descricao: 'Air Jordan 1',
     stock: '4',
     imagem: 'porInserir',
+    tipoItem_id: '4',
   });
 
   itemA = { ...createItemA[0] };
@@ -56,14 +57,17 @@ test('Test #1.1 - Listar os items por ID', () => {
 
 test('Test #3 - Apagar Items', () => {
   return app.db('item').insert({
+    
     tipoId: '2',
     tamanho: '45',
     descricao: 'Air Jordan 1',
     stock: '4',
     imagem: 'porInserir',
-  }, ['id']).then((result) => request(app).delete(`${ROUTE}/${result[0].tipoId}`)
+    tipoItem_id: '4',
+  }, ['id']).then((result) => request(app).delete(`${ROUTE}/${result[0]}`)
     .set('authorization', `bearer ${user.token}`)
     .then((res) => {
       expect(res.status).toBe(204);
-    }));
+    })
+  );
 });

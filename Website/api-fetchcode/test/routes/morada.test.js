@@ -31,6 +31,7 @@ beforeAll(async () => {
     cidade: 'Barcelos',
     distrito: 'Braga',
     pais: 'Portugal',
+    CodigoPostal_id: '5',
   });
 
   moradaA = { ...createMoradaA[0] };
@@ -59,6 +60,7 @@ test('Test #3 - Apagar Morada', () => {
     cidade: 'Barcelos',
     distrito: 'Braga',
     pais: 'Portugal',
+    CodigoPostal_id: '5',
   }, ['id']).then((result) => request(app).delete(`${ROUTE}/${result[0].id}`)
     .set('authorization', `bearer ${user.token}`)
     .then((res) => {
