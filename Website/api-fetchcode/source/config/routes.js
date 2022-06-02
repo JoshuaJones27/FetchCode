@@ -112,4 +112,18 @@ module.exports = (app) => {
     .post(app.routes.transportes.create)
     .delete(app.routes.transportes.remove); 
 
+    // ENCOMENDA
+    app.route('/encomenda')
+    .all(app.config.passport.authenticate())
+    .get(app.routes.encomendas.getAll)
+    .post(app.routes.encomendas.create)
+    .delete(app.routes.encomendas.remove);
+
+    app.route('/encomenda/:id')
+    .all(app.config.passport.authenticate())
+    .get(app.routes.encomendas.getAll)
+    .post(app.routes.encomendas.create)
+    .delete(app.routes.encomendas.remove); 
+
+
   };

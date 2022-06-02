@@ -62,12 +62,9 @@ test('Test #3 - Apagar Encomenda', () => {
     Transporte_id: '4',
     Pagamento_id: '4',
     Utilizador_idUtilizador: '4',
-  }, ['idEncomenda']).then((result) =>{
-    expect(result).toBe();
-  }
-  //  request(app).delete(`${ROUTE}/${result[0]}`)
-  //   .set('authorization', `bearer ${user.token}`)
-  //   .then((res) => {
-  //     expect(res.status).toBe(204);
-  //   }));
+  }, ['idEncomenda']).then((result) => request(app).delete(`${ROUTE}/${result[0]}`)
+  .set('authorization', `bearer ${user.token}`)
+  .then((res) => {
+    expect(res.status).toBe(204);
+  }));
 });

@@ -65,6 +65,7 @@ test('Test #2 - Atualizar dados de um utilizador', () => {
     pais: 'Inglaterra',
     isFuncionario: '0',
     isAdmin: '1',
+    token: '1',
   }, ['idUtilizador']).then((result) => request(app).put(`${ROUTE}/${result[0]}`)
     .set('authorization', `bearer ${userA.token}`)
     .send({ nome: 'User Updated' })
@@ -87,6 +88,7 @@ test('Test #3 - Apagar utilizador', () => {
     pais: 'Inglaterra',
     isFuncionario: '0',
     isAdmin: '1',
+    token: '1',
   }, ['idUtilizador']).then((result) =>{
     request(app).delete(`${ROUTE}/${result[0]}`)
     .set('authorization', `bearer ${userA.token}`)
