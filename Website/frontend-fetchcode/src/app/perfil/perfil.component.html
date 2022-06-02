@@ -1,0 +1,125 @@
+<div class="userModal" *ngIf="showUserModal">
+  <div class="showUser">
+    <a>Cor Favorita: <a>{{userProfile.corFav}}</a></a>
+    <a>Idade: <a>{{userProfile.idade}}</a></a>
+    <a>Genero: <a>{{userProfile.genero}}</a></a>
+    <a>Estacao Favorita: <a>{{userProfile.estacaoFav}}</a></a>
+    <a>Roupa Favorita: <a>{{userProfile.roupaFav}}</a></a>
+    <a>Marca Favorita: <a>{{userProfile.marcaFav}}</a></a>
+    <button class="exit-modal" (click)="closeWarning()">OK</button>
+  </div>
+</div>
+<div class="content">
+  <div class="header-title">Perfil - Preferências</div>
+  <div class="favorites">Seleciona o teu estilo:</div>
+    <form class="content-form" #profileDetail="ngForm" (ngSubmit)="onSubmit(profileDetail)">
+      <div class="form-check-boxes">
+          <label class="checkbox-inline">
+          <input type="checkbox" class="check" (click)="selectOnlyThis(0)"> Classic
+          </label>
+          <label class="checkbox-inline">
+          <input type="checkbox" class="check" (click)="selectOnlyThis(1)"> Streetwear
+          </label>
+          <label class="checkbox-inline">
+          <input type="checkbox" class="check" (click)="selectOnlyThis(2)"> Sport
+          </label>
+          <label class="checkbox-inline">
+          <input type="checkbox" class="check" (click)="selectOnlyThis(3)"> Creative
+          </label>
+          <label class="checkbox-inline">
+          <input type="checkbox" class="check" (click)="selectOnlyThis(4)"> Elegant
+          </label>
+          <label class="checkbox-inline">
+          <input type="checkbox" class="check" (click)="selectOnlyThis(5)"> Modern
+          </label>
+          <label class="checkbox-inline">
+          <input type="checkbox" class="check" (click)="selectOnlyThis(6)"> Vintage
+          </label>
+      </div>
+      <div class="form-labels-container">
+          <div class="form-labels-left">
+              <div class="form-labels">
+                  <div class="form-label-text" for="corFav">Cor Favorita</div>
+                  <div class="form-label-input">
+                      <select name="corFav" id="corFav" ngModel>
+                        <option value="Vermelho">Vermelho</option>
+                        <option value="Azul">Azul</option>
+                        <option value="Amarelo">Amarelo</option>
+                        <option value="Verde">Verde</option>
+                        <option value="Laranja">Laranja</option>
+                        <option value="Roxo">Roxo</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="form-labels">
+                  <div class="form-label-text">Idade</div>
+                  <div class="form-label-input">
+                      <input name="idade" type="number" min="0" class="form-input" ngModel />
+                  </div>
+              </div>
+              <div class="form-labels">
+                  <div class="form-label-text" for="genero">Género</div>
+                  <div class="form-label-input">
+                      <select name="genero" id="genero" ngModel>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+          <div class="form-labels-right">
+              <div class="form-labels">
+                  <div class="form-label-text" for="estacao">Estação Anual Favorita</div>
+                  <div class="form-label-input">
+                      <select name="estacaoFav" id="estacao" ngModel>
+                        <option value="Primavera">Primavera</option>
+                        <option value="Verao">Verão</option>
+                        <option value="Outono">Outono</option>
+                        <option value="Inverno">Inverno</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="form-labels">
+                  <div class="form-label-text" for="roupa">Peça Roupa Favorita</div>
+                  <div class="form-label-input">
+                      <select name="roupaFav" id="roupa" ngModel>
+                        <option value="Calcas">Calças</option>
+                        <option value="Camisas">Camisas</option>
+                        <option value="CamisasPolo">Camisas Polo</option>
+                        <option value="Casacos">Casacos</option>
+                        <option value="Fitness">Fitness</option>
+                        <option value="Jaquetas">Jaquetas</option>
+                        <option value="Jeans">Jeans</option>
+                        <option value="Malhas">Malhas</option>
+                        <option value="Shorts">Shorts</option>
+                        <option value="Ternos">Ternos</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="form-labels">
+                  <div class="form-label-text" for="marca">Marca Favorita</div>
+                  <div class="form-label-input">
+                      <select name="marcaFav" id="marca" ngModel>
+                        <option value="Armani">Armani</option>
+                        <option value="Fendi">Fendi</option>
+                        <option value="Versace">Versace</option>
+                        <option value="Burberry">Burberry</option>
+                        <option value="RalphLauren">Ralph Lauren</option>
+                        <option value="Chanel">Chanel</option>
+                        <option value="Prada">Prada</option>
+                        <option value="Hermes">Hermes</option>
+                        <option value="Gucci">Gucci</option>
+                        <option value="LouisVuitton">Louis Vuitton</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="buttons">
+        <button type="submit" *ngIf="!user">Guardar Utilizador</button>
+        <button type="button" *ngIf="user" (click)="showUser()">Mostrar Utilizador</button>
+        <button type="button" *ngIf="user" (click)="updateUser(profileDetail)">Update Utilizador</button>
+        <button type="button" *ngIf="user" (click)="deleteUser(profileDetail)">Apagar Utilizador</button>
+      </div>
+  </form>
+</div>

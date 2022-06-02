@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="col-1">
+    <div class="slideshow">
+      <div class="slideshow-container">
+        <div class="mySlides fade">
+          <div class="numbertext">1 / 3</div>
+          <img src="../../assets/images/casaco1.png" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+          <div class="numbertext">2 / 3</div>
+          <img src="../../assets/images/casaco2.png" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+          <div class="numbertext">3 / 3</div>
+          <img src="../../assets/images/casaco3.png" style="width:100%">
+        </div>
+
+        <a class="prev" (click)="plusSlides(-1)">❮</a>
+        <a class="next" (click)="plusSlides(1)">❯</a>
+      </div>
+      <br>
+
+      <div style="text-align:center">
+        <span class="dot" (click)="currentSlide(1)"></span>
+        <span class="dot" (click)="currentSlide(2)"></span>
+        <span class="dot" (click)="currentSlide(3)"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-2">
+    <h1>THE NORTH FACE</h1>
+    <p>1996 Retro Nuptse padded jacket</p>
+    <br>
+    <h2>609€</h2>
+    <br>
+    <select name="cars" id="cars">
+      <option value="Select Size" selected>SELECT SIZE</option>
+      <option value="volvo">XS</option>
+      <option value="saab">S</option>
+      <option value="opel">M</option>
+      <option value="audi">L</option>
+      <option value="audi">XL</option>
+      <option value="audi">XXL</option>
+    </select>
+    <a>
+      <button type="button" routerLink="/cart">ADD TO BAG</button>
+    </a>
+    <br><br>
+
+    <div class="infos">
+      <div class="dropdown">
+        <button class="dropbtn">THE DETAILS</button>
+        <div class="dropdown-content">
+          <ul>
+            <li>Inspired by the 1996 version, the Retro Nuptse jacket is a durable style known for its lofty 700-fill
+              down construction and for having a sleek and stowable hood at the rear. This model appears in a black and
+              red tone and
+              is detailed with the brand's logo at the chest and at the rear.</li>
+          </ul>
+        </div>
+      </div>
+      <br>
+      <div class="dropdown">
+        <button class="dropbtn">SIZE & FIT</button>
+        <div class="dropdown-content">
+          <ul>
+            <li>This piece fits true to size. We recommend you get your regular size.</li>
+            <br>
+            <li>Cut for a loose fit.</li>
+            <br>
+            <li>Made with a mid-weight fabric.</li>
+          </ul>
+        </div>
+      </div>
+      <br>
+      <div class="dropdown">
+        <button class="dropbtn">DELIVERY & FREE RETURNS</button>
+        <div class="dropdown-content">
+          <ul>
+            <li>One delivery fee.</li>
+            <br>
+            <li>Free returns within 14 days.</li>
+            <br>
+            <li>All our deliveries are climate conscious.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

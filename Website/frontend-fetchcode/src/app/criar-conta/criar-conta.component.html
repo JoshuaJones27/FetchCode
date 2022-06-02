@@ -1,0 +1,29 @@
+<div class="search-items">
+  <a>CREATE NEW ACCOUNT</a>
+</div>
+
+<form #dadosForm="ngForm" class="dados-container form" (ngSubmit)="onSubmit(dadosForm)">
+  <div class="dados-container">
+    <div class="dados-left">
+      <input name="Email" type="text" placeholder="E-mail:" ngModel>
+      <input name="FirstName" type="text" placeholder="First Name:" ngModel>
+      <input name="LastName" type="text" placeholder="Last Name:" ngModel>
+      <input name="Password" type="password" placeholder="Password:" ngModel>
+      <input name="PhoneNumber" type="text" placeholder="Phone Number:" ngModel>
+      <input name="Gender" type="text" placeholder="Gender:" ngModel>
+      <input name="DOB" type="text" placeholder="Date of Birth:" ngModel>
+    </div>
+    <div class="dados-right">
+        <input name="Address" type="text" placeholder="Address:" ngModel>
+        <input name="Country" type="text" placeholder="Country:" ngModel>
+        <input name="City" type="text" placeholder="City:" ngModel>
+        <input name="PostalCode" type="text" placeholder="Postal Code:" ngModel>
+    </div>
+  </div>
+  <div class="buttons">
+    <button *ngIf="!userInserted" type="submit">Guardar Info</button>
+    <button *ngIf="userInserted" (click)="updateUser(dadosForm)">Update User</button>
+    <button *ngIf="userInserted" (click)="deleteUser()">Apagar User</button>
+    <!-- <button>dsa</button> -->
+  </div>
+</form>

@@ -1,0 +1,96 @@
+.small-container{
+    padding-bottom: 5vh;
+  }
+  
+  button {
+    width: fit-content;
+    padding: 15px 30px;
+    background: red;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 70px;
+    cursor: pointer;
+    transition: transform 0.5s;
+    float: right;
+    margin-right: 20px;
+  }
+  
+  button:hover {
+    background: #aa0505;
+    transform: translateY(-5px);
+  }
+  
+  .small-img img {
+    width: 120px;
+  }
+  
+  .cart-page {
+    background-color: rgb(65, 86, 107);
+    margin-top: 15vh;
+    margin-right: 200px;
+    margin-left: 200px;
+    overflow: auto;
+  }
+  
+  table {
+    color: #fff;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .text {
+    margin-top: 15px;
+    color: #fff;
+  }
+  
+  .cart-info {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  th {
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background: red;
+    font-weight: normal;
+  }
+  
+  td {
+    padding: 10px 20px;
+  }
+  
+  td input {
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+  }
+  
+  td a {
+    color: #ff523b;
+    font-size: 12px;
+  }
+  
+  td img {
+    width: 230px;
+    height: 260px;
+    margin-right: 15px;
+    margin-top: 15px;
+  }
+  
+  .total-price {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: auto;
+    color: white;
+  }
+  
+  .total-price > div {
+    flex-direction: column;
+    display: flex;
+  }
+  
+  
+  
