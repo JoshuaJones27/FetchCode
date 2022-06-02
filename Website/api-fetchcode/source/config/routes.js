@@ -124,6 +124,4 @@ module.exports = (app) => {
     .get(app.routes.encomendas.getAll)
     .post(app.routes.encomendas.create)
     .delete(app.routes.encomendas.remove); 
-
-
   };
