@@ -16,11 +16,11 @@ export class EncomendasService {
   constructor(private http: HttpClient) { }
 
   GetAllEncomendas() : Observable<unknown>{
-    return this.http.get<unknown>("http://localhost:3000/v1/encomendas")
+    return this.http.get<unknown>("http://localhost:3000/v1/encomenda")
   }
 
   CreatePurchase(body) {
-    return this.http.post("http://localhost:3000/v1/encomendas", body)
+    return this.http.post("http://localhost:3000/v1/encomenda", body)
   }
 
 }
