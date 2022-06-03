@@ -15,7 +15,6 @@ import { SlideshowComponent } from './slideshow/slideshow.component';
 import { CriarContaComponent } from './criar-conta/criar-conta.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     CriarContaComponent,
     FavoritosComponent,
     PaginaInicialComponent,
-    PagenotfoundComponent
-  ],
+ ],
   imports: [
     BrowserModule,
     AppRoutingModule,
