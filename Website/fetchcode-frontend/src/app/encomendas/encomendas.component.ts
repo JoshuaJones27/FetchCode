@@ -17,4 +17,8 @@ export class EncomendasComponent implements OnInit {
   GetAllEncomendas() {
     this.EncomendasService.GetAllEncomendas().subscribe(encomendas => console.log(encomendas));
   }
+
+  CreatePurchase(body) {
+    this.EncomendasService.CreatePurchase(body).subscribe(encomendas => console.log(encomendas));
+  }
 }
