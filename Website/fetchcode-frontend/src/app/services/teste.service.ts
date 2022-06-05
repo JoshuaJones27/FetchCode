@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class EncomendasService {
+export class TesteService {
   startUpdateLast(purchaseDetail: NgForm) {
     throw new Error('Method not implemented.');
   }
@@ -15,12 +15,12 @@ export class EncomendasService {
 
   constructor(private http: HttpClient) { }
 
-  GetAllEncomendas() : Observable<unknown>{
-    return this.http.get<unknown>("http://localhost:3000/v1/encomenda")
+  GetAllTestes() : Observable<unknown>{
+    return this.http.get<unknown>("http://localhost:3000/v1/item")
   }
 
-  CreatePurchase(body) {
-    return this.http.post("http://localhost:3000/v1/encomenda", JSON.stringify(body))
-  }
+  // CreatePurchase(body) {
+  //   return this.http.post("http://localhost:3000/v1/encomenda", JSON.stringify(body))
+  // }
 
 }
