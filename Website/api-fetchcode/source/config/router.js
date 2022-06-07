@@ -14,6 +14,7 @@ module.exports = (app) => {
   secureRouter.use('/pagamento', app.routes.pagamentos);
   secureRouter.use('/tipoItem', app.routes.tiposItens);
   secureRouter.use('/transporte', app.routes.transportes);
+  secureRouter.use('/compra', app.routes.checkouts);
 
   app.use('/v1', secureRouter);
 };

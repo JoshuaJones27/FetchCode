@@ -1,7 +1,7 @@
 const ValidationError = require('../errors/validationError');
 
 module.exports = (app) => {
-    /**Encontrar um certa encomenda */
+    /**Encontrar uma certa encomenda */
     const findOne = (filter= {}) => {
         return app.db('encomenda').where(filter).select(['idEncomenda', 'encomendaDescricao', 'estado', 'Transporte_id', 'Pagamento_id', 'Utilizador_idUtilizador']);
     };
@@ -22,9 +22,8 @@ module.exports = (app) => {
 
     /**Atualizar a encomenda selecionada */
     const update = async (req, res) => {
-        console.log(req)
-
-        return app.db('encomenda').insert([newEncomenda, 'encomendaDescricao', 'estado', 'Transporte_id', 'Pagamento_id', 'Utilizador_idUtilizador']);
+        const newEncomenda = {...req};
+        return app.db('encomenda').insert(newEncomenda, ['encomendaDescricao', 'estado', 'Transporte_id', 'Pagamento_id', 'Utilizador_idUtilizador']);
     };
 
     /**Remover uma encomenda */

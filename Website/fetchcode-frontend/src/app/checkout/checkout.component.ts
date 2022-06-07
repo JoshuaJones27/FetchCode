@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Checkout } from '../services/checkout';
 import { CheckoutService } from '../services/checkout.service';
 
 @Component({
@@ -10,47 +9,47 @@ import { CheckoutService } from '../services/checkout.service';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor(private checkoutService: CheckoutService) { }
+  constructor(private CheckoutService: CheckoutService) { }
 
   ngOnInit(): void {
-    // this.GetAllEncomendas()
+    this.GetAllCheckouts()
   }
 
-  // GetAllEncomendas() {
-  //   this.checkoutService.GetAllEncomendas().subscribe(encomendas => console.log(encomendas));
-  // }
+  GetAllCheckouts() {
+    this.CheckoutService.GetAllCheckouts().subscribe(checkouts => console.log(checkouts));
+  }
 
   modeUpdate: boolean = false;
   closeModal: boolean = true;
 
   onSubmit(checkoutDetail: NgForm) {
-    this.checkoutService.createCheckout(checkoutDetail.form.value)
-    this.modeUpdate = this.checkoutService.modeUpdate;
+    this.CheckoutService.createCheckout(checkoutDetail.form.value)
+    this.modeUpdate = this.CheckoutService.modeUpdate;
     checkoutDetail.reset();
   }
 
   startUpdateLast(checkoutDetail : NgForm){
-    if(this.checkoutService.checkouts.length){
-      this.checkoutService.startUpdateLast(checkoutDetail);
-      this.modeUpdate = this.checkoutService.modeUpdate;
+    if(this.CheckoutService.checkouts.length){
+      this.CheckoutService.startUpdateLast(checkoutDetail);
+      this.modeUpdate = this.CheckoutService.modeUpdate;
     } else {
       this.closeModal = false;
     }
   }
 
   updateLast(checkoutDetail : NgForm){
-    this.checkoutService.updateLast(checkoutDetail);
-    this.modeUpdate = this.checkoutService.modeUpdate;
+    this.CheckoutService.updateLast(checkoutDetail);
+    this.modeUpdate = this.CheckoutService.modeUpdate;
   }
 
   cancelUpdate(checkoutDetail : NgForm){
-    this.checkoutService.cancelUpdate(checkoutDetail);
-    this.modeUpdate = this.checkoutService.modeUpdate;
+    this.CheckoutService.cancelUpdate(checkoutDetail);
+    this.modeUpdate = this.CheckoutService.modeUpdate;
   }
 
   deleteLastCheckout(){
-    if(this.checkoutService.checkouts.length){
-      this.checkoutService.deleteLastCheckout();
+    if(this.CheckoutService.checkouts.length){
+      this.CheckoutService.deleteLastCheckout();
     } else {
       this.closeModal = false;
     }

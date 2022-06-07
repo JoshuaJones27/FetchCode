@@ -9,16 +9,13 @@ import { NgForm } from '@angular/forms';
 })
 export class CheckoutService {
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   checkouts: Checkout[] = [];
   modeUpdate: boolean = false;
 
-  GetAllCheckouts() : Observable<unknown>{
-    return this.http.get<unknown>("http://localhost:3000/v1/compra")
-  }
 
-  createCheckout(checkoutDetail: Checkout) {
+  createPurchase(checkoutDetail: Checkout) {
     this.checkouts.push(checkoutDetail);
     console.log(this.checkouts);
   }

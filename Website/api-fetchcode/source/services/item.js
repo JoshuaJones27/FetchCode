@@ -10,7 +10,7 @@ module.exports = (app) => {
         return app.db('item').select(['*']);
     };
 
-    /**Filtragem apenas as cores */
+    /**Filtragem apenas as cores por ID */
     const getAllID = async (filter) => {
         return app.db('item').where(filter).select(['*']);
     };
@@ -29,12 +29,12 @@ module.exports = (app) => {
         return app.db('item').insert(newItem, ['tipoId', 'tamanho', 'descricao', 'stock', 'imagem', 'tipoItem_id']);
     };
 
-    const update = async (req, res) => {
-        console.log(req)
-
-        return app.db('item').insert([newItem, 'tipoId', 'tamanho', 'descricao', 'stock', 'imagem', 'tipoItem_id']);
+    /**Atualizar o item selecionado */
+    const update = (id, item) => {
+        return app.db('item').where({ id }).update(item, ['tipoId', 'tamanho', 'descricao', 'stock', 'imagem', 'tipoItem_id']);
     };
 
+    /**Remover um item */
     const remove = async (id) => {
         return app.db('item').where(id).del();
     };

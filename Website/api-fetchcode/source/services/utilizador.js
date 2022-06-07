@@ -5,23 +5,28 @@ const ValidationError = require('../errors/validationError');
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 module.exports = (app) => {
+  /**Selecionar todos os utilizadores*/
   const getAll = async () => {
     return app.db('utilizador').select(['*']);
   };
 
+  /**Selecionar todos por nome */
   const getAllName = async () => {
     return app.db('utilizador').select(['idUtilizador', 'nome']);
   };
 
+  /**Encontrar um certo utilizador*/
   const findOne = (filter = {}) => {
     return app.db('utilizador').where(filter).select(['idUtilizador', 'nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais', 'isFuncionario', 'isAdmin', 'token']);
 }
 
+  /**Encriptação de password */
   const getPasswordHash = (password) => {
     const salt = bcrypt.genSaltSync(10);
     return bcrypt.hashSync(password, salt);
   };
 
+  /**Criação do registo de um novo utilizador */
   const create = async (req, res) => {
     if (!req.nome) throw new ValidationError('O nome é um campo obrigatorio');
     if (!req.nomeUtilizador) throw new ValidationError('O nome de utilizador é um campo obrigatorio');
@@ -47,18 +52,19 @@ module.exports = (app) => {
     return app.db('utilizador').insert(newUser, ['nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais']);
   };
 
+  /**Atualizar o utilizador selecionado */
   const update = async (req, res) => {
-    if (req.palavraPasse) { req.palavraPasse = getPasswordHash(req.palavraPasse); }
+    const newUser = {...req};
 
-    console.log(req)
-
-    return app.db('utilizador').where(req).update(res, ['nome']);
+    return app.db('utilizador').where(req).update(newUser, ['nome']);
   };
 
+  /**Remover um utilizador */
   const remove = async (id) => {
     return app.db('utilizador').where({ idUtilizador: id }).del();
   };
 
+  /**Recuperação de password */
   const forgotPassword = async (req, res) => {
     if (!req.email) throw new ValidationError('O email é um campo obrigatório');
     if (!req.telemovel) throw new ValidationError('O número telemóvel é um campo obrigatório');
