@@ -8,7 +8,6 @@ import { SlideshowComponent } from './slideshow/slideshow.component';
 import { CriarContaComponent } from './criar-conta/criar-conta.component';
 import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
-import { TesteComponent } from './teste/teste.component';
 
 const routes: Routes = [
   { path: '', component: PaginaInicialComponent },
@@ -20,7 +19,6 @@ const routes: Routes = [
   { path: 'criarconta', component: CriarContaComponent },
   { path: 'paginainicial', component: PaginaInicialComponent },
   { path: 'favoritos', component: FavoritosComponent },
-  { path: 'teste', component: TesteComponent },
 ];
 
 @NgModule({

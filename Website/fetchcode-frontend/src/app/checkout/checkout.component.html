@@ -1,27 +1,27 @@
 <div class="container">
   <div class="row">
     <div class="col-75">
-      <form #purchaseDetail="ngForm" (ngSubmit)="onSubmit(purchaseDetail)">
+      <form #checkoutDetail="ngForm" (ngSubmit)="onSubmit(checkoutDetail)">
         <div class="row">
           <div class="col-50">
             <h3>Billing Address</h3>
-            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-            <input type="text" name="fullName" class="input-form" placeholder="João Carvalho Araújo" ngModel required>
+            <label for="fname"><i class="fa fa-user"></i> Nome Completo</label>
+            <input type="text" name="nome" class="input-form" placeholder="João Carvalho Araújo" ngModel required>
             <label for="email"><i class="fa fa-envelope"></i> Email</label>
             <input type="text" name="email" class="input-form" placeholder="joaoc@example.com" ngModel required>
-            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-            <input type="text" name="address" class="input-form" placeholder="111 W. 11th Street" ngModel required>
-            <label for="city"><i class="fa fa-institution"></i> City</label>
-            <input type="text" name="city" class="input-form" placeholder="Barcelos" ngModel required>
+            <label for="adr"><i class="fa fa-address-card-o"></i> Rua</label>
+            <input type="text" name="rua" class="input-form" placeholder="111 W. 11th Street" ngModel required>
+            <label for="city"><i class="fa fa-institution"></i> Cidade</label>
+            <input type="text" name="cidade" class="input-form" placeholder="Barcelos" ngModel required>
 
             <div class="row">
               <div class="col-50">
-                <label for="state">State</label>
-                <input type="text" name="state" class="input-form" placeholder="Barcelos" ngModel required>
+                <label for="state">Distrito</label>
+                <input type="text" name="distrito" class="input-form" placeholder="Braga" ngModel required>
               </div>
               <div class="col-50">
-                <label for="PostalCode">Postal Code</label>
-                <input type="text" name="postalCode" placeholder="Postal Code" class="input-form"
+                <label for="PostalCode">Código Postal</label>
+                <input type="text" name="codPostal" placeholder="Código Postal" class="input-form"
                   placeholder="1111-111" ngModel required>
               </div>
             </div>
@@ -36,16 +36,16 @@
               <i class="fa fa-cc-mastercard" style="color:red;"></i>
               <i class="fa fa-cc-discover" style="color:orange;"></i>
             </div>
-            <label for="cname">Name on Card</label>
-            <input type="text" name="cardName" class="input-form" placeholder="João Carvalho Araújo" ngModel required>
-            <label for="ccnum">Credit card number</label>
-            <input type="text" name="creditCardNumber" class="input-form" placeholder="1111-2222-3333-4444" ngModel required>
-            <label for="expmonth">Exp Month</label>
-            <input type="text" name="expirationMonth" class="input-form" placeholder="September" ngModel required>
+            <label for="cname">Nome Cartão</label>
+            <input type="text" name="nomeCartao" class="input-form" placeholder="João Carvalho Araújo" ngModel required>
+            <label for="ccnum">Número Cartão Crédito</label>
+            <input type="text" name="cartaoCredito" class="input-form" placeholder="1111-2222-3333-4444" ngModel required>
+            <label for="expmonth">Exp Mês</label>
+            <input type="text" name="mesValidade" class="input-form" placeholder="Setembro" ngModel required>
             <div class="row">
               <div class="col-50">
-                <label for="expyear">Exp Year</label>
-                <input type="text" name="expirationYear" class="input-form" placeholder="2022" ngModel required>
+                <label for="expyear">Exp Ano</label>
+                <input type="text" name="anoValidade" class="input-form" placeholder="2022" ngModel required>
               </div>
               <div class="col-50">
                 <label for="cvv">CVV</label>
@@ -58,11 +58,11 @@
         <label>
           <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
         </label>
-        <input type="submit" value="Continue to checkout" *ngIf="modeUpdate === false" class="btn">
-        <input value="Update last purchase" class="btn-update"  *ngIf="modeUpdate === false" (click)="startUpdateLast(purchaseDetail)">
-        <input value="Update Purchase" class="btn" *ngIf="modeUpdate" (click)="updateLast(purchaseDetail)">
-        <input value="Cancel Update Purchase" class="btn-update" *ngIf="modeUpdate" (click)="cancelUpdate(purchaseDetail)">
-        <input value="Delete Last Purchase" class="btn-delete" *ngIf="!modeUpdate" (click)="deleteLastPurchase()">
+        <input type="submit" value="Continue to Checkout" *ngIf="modeUpdate === false" class="btn">
+        <input value="Update last Checkout" class="btn-update"  *ngIf="modeUpdate === false" (click)="startUpdateLast(checkoutDetail)">
+        <input value="Update Checkout" class="btn" *ngIf="modeUpdate" (click)="updateLast(checkoutDetail)">
+        <input value="Cancel Update Checkout" class="btn-update" *ngIf="modeUpdate" (click)="cancelUpdate(checkoutDetail)">
+        <input value="Delete Last Checkout" class="btn-delete" *ngIf="!modeUpdate" (click)="deleteLastCheckout()">
       </form>
     </div>
 
@@ -81,7 +81,7 @@
 </div>
 <div class="warning" *ngIf="!closeModal">
   <div class="modal-warning">
-    No purchases to update/delete!!!
+    No checkout to update/delete!!!
     <button class="exit-modal" (click)="closeWarning()">OK</button>
   </div>
 </div>

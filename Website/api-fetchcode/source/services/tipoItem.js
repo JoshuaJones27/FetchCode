@@ -17,8 +17,6 @@ module.exports = (app) => {
     };
 
     const update = async (req, res) => {
-        console.log(req)
-
         return app.db('tipoitem').insert([newTipoItem, 'tipo']);
     };
 

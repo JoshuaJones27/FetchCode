@@ -15,14 +15,14 @@ module.exports = (app) => {
         if(!req.distrito) throw new ValidationError('O distrito é um campo obrigatorio');
         if(!req.pais) throw new ValidationError('O pais é um campo obrigatorio');
 
-        const newMorada = {...req};
+        const newMorada = {...res};
+        console.log(['rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
         return app.db('morada').insert(newMorada, ['rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
     };
 
-    const update = async (req, res) => {
-        console.log(req)
-
-        return app.db('morada').insert([newMorada, 'rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
+    const update = async (id) => {
+        //return app.db('morada').insert([newMorada, 'rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
+        return app.db('morada').where( {id} ).insert(['rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
     };
 
     const remove = async (id) => {

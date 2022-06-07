@@ -5,16 +5,19 @@ module.exports = (app) => {
     //     return app.db('item').where(filter).select(['id', 'tipoId', 'tamanho', 'descricao', 'stock', 'imagem']);
     // }
 
+    /**Selecionar todos os itens */
     const getAll = async () => {
         return app.db('item').select(['*']);
     };
 
+    /**Filtragem apenas as cores */
     const getAllID = async (filter) => {
         return app.db('item').where(filter).select(['*']);
     };
 
     //const findItemByColor = 
 
+    /**Criação do registo de um novo item */
     const create = async (req, res) => {
         if(!req.tipoId) throw new ValidationError('O tipo de ID é um campo obrigatorio');
         if(!req.tamanho) throw new ValidationError('O tipo de tamanho é um campo obrigatorio');

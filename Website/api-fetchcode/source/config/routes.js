@@ -71,6 +71,7 @@ module.exports = (app) => {
      .all(app.config.passport.authenticate())
      .get(app.routes.moradas.getAll)
      .post(app.routes.moradas.create)
+     .put(app.routes.moradas.update)
      .delete(app.routes.moradas.remove);  
 
     // PAGAMENTO
@@ -96,6 +97,7 @@ module.exports = (app) => {
     app.route('/tipoItem/:id')
     .all(app.config.passport.authenticate())
     .get(app.routes.tipoItens.getAll)
+    .put(app.routes.tipoItens.update)
     .post(app.routes.tipoItens.create)
     .delete(app.routes.tipoItens.remove);
     

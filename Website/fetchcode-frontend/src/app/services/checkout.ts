@@ -1,4 +1,4 @@
-export interface Purchase {
+export interface Checkout {
   fullName: string,
   email: string,
   address: string,

@@ -22,5 +22,4 @@ export class EncomendasService {
   CreatePurchase(body) {
     return this.http.post("http://localhost:3000/v1/encomenda", JSON.stringify(body))
   }
-
 }

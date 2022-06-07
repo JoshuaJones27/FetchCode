@@ -15,7 +15,6 @@ import { SlideshowComponent } from './slideshow/slideshow.component';
 import { CriarContaComponent } from './criar-conta/criar-conta.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
-import { TesteComponent } from './teste/teste.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { TesteComponent } from './teste/teste.component';
     CriarContaComponent,
     FavoritosComponent,
     PaginaInicialComponent,
-    TesteComponent,
  ],
   imports: [
     BrowserModule,
