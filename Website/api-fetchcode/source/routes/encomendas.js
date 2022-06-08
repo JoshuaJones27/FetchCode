@@ -15,7 +15,7 @@ module.exports = (app) => {
         .catch((err) => next(err));
     });
 
-    router.post('/create', async (req, res, next) => {
+    router.post('/', async (req, res, next) => {
         try {
             const result = await app.services.encomenda.create(req.body);
             return res.status(201).json(result[0]);
@@ -24,17 +24,17 @@ module.exports = (app) => {
         }
     });
 
-    router.put('/:id', (req, res, next) => {
-        app.services.encomenda.update(req.params.id, req.body)
-          .then((result) => res.status(204).json(result[0]))
-          .catch((err) => next(err));
-    });
-
     router.delete('/:id', (req, res, next) => {
         app.services.encomenda.remove(req.params.id)
           .then((result) => res.status(204).json(result[0]))
           .catch((err) => next(err));
     });
     
+    router.put('/:id', (req, res, next) => {
+        app.services.encomenda.update(req.params.id, req.body)
+          .then((result) => res.status(204).json(result[0]))
+          .catch((err) => next(err));
+    });
+
     return router;
 };

@@ -22,12 +22,12 @@ module.exports = (app) => {
 
     /**Atualizar o pagamento selecionado */
     const update = async (id, pagamento) => {
-        return app.db('pagamento').where({ id }).insert(pagamento, ['pagamentoTipoID', 'encomendaID']);
+        return app.db('pagamento').where({ id }).update(pagamento, ['pagamentoTipoID', 'encomendaID']);
     };
 
     /**Remover um pagamento */
     const remove = async (id) => {
-        return app.db('pagamento').where({ id }).del();
+        return app.db('pagamento').where(id).del();
     };
 
     return {

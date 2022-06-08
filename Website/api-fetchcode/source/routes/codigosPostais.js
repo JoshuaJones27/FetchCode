@@ -24,10 +24,14 @@ module.exports = (app) => {
         .catch((err) => next(err));
     });
 
-    
-
     router.delete('/:id', (req, res, next) => {
         app.services.codigoPostal.remove(req.params.id)
+          .then((result) => res.status(204).json(result[0]))
+          .catch((err) => next(err));
+    });
+
+    router.put('/:id', (req, res, next) => {
+        app.services.codigoPostal.update(req.params.id, req.body)
           .then((result) => res.status(204).json(result[0]))
           .catch((err) => next(err));
     });

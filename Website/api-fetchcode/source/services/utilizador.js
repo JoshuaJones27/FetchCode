@@ -38,13 +38,6 @@ module.exports = (app) => {
     if (!req.distrito) throw new ValidationError('O distrito é um campo obrigatorio');
     if (!req.pais) throw new ValidationError('O pais é um campo obrigatorio');
     if (!emailRegex.test(req.email)) throw new ValidationError('O email não segue os padrões convencionais!');
-    //if (!passwordRegex.test(req.password)) throw new ValidationError('A password não segue os padrões convencionais!');
-
-    // const userDBEmail = await findOne({ email: req.email });
-    // if (userDBEmail) throw new ValidationError('Email duplicado');
-
-    // const userDBNTelemovel = await findOne({ telemovel: req.telemovel });
-    // if (userDBNTelemovel) throw new ValidationError('Número telemóvel duplicado');
 
     const newUser = { ...req };
     newUser.palavraPasse = getPasswordHash(req.palavraPasse);

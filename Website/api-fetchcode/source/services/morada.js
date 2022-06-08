@@ -19,7 +19,6 @@ module.exports = (app) => {
         if(!req.pais) throw new ValidationError('O pais é um campo obrigatorio');
 
         const newMorada = {...res};
-        //console.log(['rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
         return app.db('morada').insert(newMorada, ['rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
     };
 
@@ -30,7 +29,7 @@ module.exports = (app) => {
 
     /**Remover uma morada */
     const remove = async (id) => {
-        return app.db('morada').where({ id }).del();
+        return app.db('morada').where(id).del();
     };
 
     return {

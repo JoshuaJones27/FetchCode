@@ -21,13 +21,13 @@ module.exports = (app) => {
     };
 
     /**Atualizar a encomenda selecionada */
-    const update = async (id, encomenda) => {
-        return app.db('encomenda').where({ id }).insert(encomenda, ['encomendaDescricao', 'estado', 'Transporte_id', 'Pagamento_id', 'Utilizador_idUtilizador']);
+    const update = async (idEncomenda, encomenda) => {
+        return app.db('encomenda').where({ idEncomenda }).update(encomenda, ['encomendaDescricao', 'estado', 'Transporte_id', 'Pagamento_id', 'Utilizador_idUtilizador']);
     };
 
     /**Remover uma encomenda */
-    const remove = async (id) => {
-        return app.db('encomenda').where({ id }).del();
+    const remove = async (idEncomenda) => {
+        return app.db('encomenda').where({ idEncomenda }).del();
     };
 
     return {
