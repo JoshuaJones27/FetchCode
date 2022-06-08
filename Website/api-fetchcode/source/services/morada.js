@@ -18,7 +18,7 @@ module.exports = (app) => {
         if(!req.distrito) throw new ValidationError('O distrito é um campo obrigatorio');
         if(!req.pais) throw new ValidationError('O pais é um campo obrigatorio');
 
-        const newMorada = {...res};
+        const newMorada = {...req};
         return app.db('morada').insert(newMorada, ['rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
     };
 
