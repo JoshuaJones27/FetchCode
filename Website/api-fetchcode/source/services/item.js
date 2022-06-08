@@ -10,7 +10,7 @@ module.exports = (app) => {
         return app.db('item').select(['*']);
     };
 
-    /**Filtragem apenas os itens por ID */
+    /**Filtragem apenas dos itens por ID */
     const getAllID = async(filter) => {
         return app.db('item').where(filter).select(['*']);
     };
