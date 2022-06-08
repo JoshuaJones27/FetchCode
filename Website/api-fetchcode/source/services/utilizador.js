@@ -11,14 +11,18 @@ module.exports = (app) => {
   };
 
   /**Selecionar todos por nome */
-  const getAllName = async () => {
-    return app.db('utilizador').select(['idUtilizador', 'nome']);
+  // const getAllName = async () => {
+  //   return app.db('utilizador').select(['idUtilizador', 'nome']);
+  // };
+
+  const getAllID = async (filter) => {
+    return app.db('utilizador').where(filter).select(['*']);
   };
 
   /**Encontrar um certo utilizador*/
   const findOne = (filter = {}) => {
     return app.db('utilizador').where(filter).select(['idUtilizador', 'nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais', 'isFuncionario', 'isAdmin', 'token']);
-}
+  }
 
   /**Encriptação de password */
   const getPasswordHash = (password) => {
@@ -37,22 +41,20 @@ module.exports = (app) => {
     if (!req.cidade) throw new ValidationError('A cidade é um campo obrigatorio');
     if (!req.distrito) throw new ValidationError('O distrito é um campo obrigatorio');
     if (!req.pais) throw new ValidationError('O pais é um campo obrigatorio');
-    if (!emailRegex.test(req.email)) throw new ValidationError('O email não segue os padrões convencionais!');
+    //if (!emailRegex.test(req.email)) throw new ValidationError('O email não segue os padrões convencionais!');
 
     const newUser = { ...req };
-    newUser.palavraPasse = getPasswordHash(req.palavraPasse);
-
-    return app.db('utilizador').insert(newUser, ['nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais']);
+    return app.db('utilizador').insert(newUser, ['nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais', 'isFuncionario', 'isAdmin', 'token']);
   };
 
   /**Atualizar o utilizador selecionado */
-  const update = async (id, utilizador) => {
-    return app.db('utilizador').where({ id }).update(utilizador, ['nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais']);
+  const update = async (idUtilizador, utilizador) => {
+    return app.db('utilizador').where({ idUtilizador }).update(utilizador, ['nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais', 'isFuncionario', 'isAdmin', 'token']);
   };
 
   /**Remover um utilizador */
-  const remove = async (id) => {
-    return app.db('utilizador').where({ idUtilizador: id }).del();
+  const remove = async (idUtilizador) => {
+    return app.db('utilizador').where({ idUtilizador }).del();
   };
 
   /**Recuperação de password */
@@ -76,7 +78,8 @@ module.exports = (app) => {
 
   return {
     getAll,
-    getAllName,
+    //getAllName,
+    getAllID,
     findOne,
     create,
     update,

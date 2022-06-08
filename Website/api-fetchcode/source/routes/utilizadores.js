@@ -15,7 +15,7 @@ module.exports = (app) => {
   });
 
   router.get('/', (req, res, next) => {
-    app.services.utilizador.getAllName()
+    app.services.utilizador.getAllID()
       .then((result) => res.status(200).json(result))
       .catch((err) => next(err));
   });
@@ -24,43 +24,43 @@ module.exports = (app) => {
     app.services.utilizador.findOne({ idUtilizador: req.params.id })
     .then((result) => res.status(200).json(result))
     .catch((err) => next(err));
-});
-
-  router.post('/signin', (req, res, next) => {
-    app.services.utilizador.findOne({ email: req.body.email })
-      .then((user) => {
-        if (!user) throw new ValidationError('Autenticação inválida! #2');
-
-        const {
-          idUtilizador, email, telemovel,
-        } = user;
-
-        if (bcrypt.compareSync(req.body.password, user.password)) {
-          const payload = {
-            idUtilizador,
-            email,
-            telemovel,
-          };
-
-          const token = jwt.encode(payload, secret);
-          res.status(200).json({ token });
-        } else throw new ValidationError('Autenticação inválida!');
-      }).catch((err) => next(err));
   });
 
-  router.put('/:id', (req, res, next) => {
-    app.services.utilizador.update(req.params.id, req.body)
-      .then((result) => res.status(204).json(result[0]))
-      .catch((err) => next(err));
-  });
+  // router.post('/', (req, res, next) => {
+  //   app.services.utilizador.findOne({ email: req.body.email })
+  //     .then((user) => {
+  //       if (!user) throw new ValidationError('Autenticação inválida! #2');
 
-  router.post('/signup', async (req, res, next) => {
+  //       const {
+  //         idUtilizador, email, telemovel,
+  //       } = user;
+
+  //       if (bcrypt.compareSync(req.body.password, user.password)) {
+  //         const payload = {
+  //           idUtilizador,
+  //           email,
+  //           telemovel,
+  //         };
+
+  //         const token = jwt.encode(payload, secret);
+  //         res.status(200).json({ token });
+  //       } else throw new ValidationError('Autenticação inválida!');
+  //     }).catch((err) => next(err));
+  // });
+
+  router.post('/', async (req, res, next) => {
     try {
       const result = await app.services.utilizador.create(req.body);
       return res.status(201).json(result[0]);
     } catch (err) {
       return next(err);
     }
+  });
+
+  router.put('/:id', (req, res, next) => {
+    app.services.utilizador.update(req.params.id, req.body)
+      .then((result) => res.status(204).json(result[0]))
+      .catch((err) => next(err));
   });
 
   router.delete('/:id', (req, res, next) => {
