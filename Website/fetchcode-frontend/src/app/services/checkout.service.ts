@@ -23,13 +23,14 @@ export class CheckoutService {
     return this.http.post("http://localhost:3000/v1/compra", body)
   }
 
-  PutCheckoutLast(body) {
-    this.GetAllCheckouts().subscribe(
-      data => this.checkouts.push(data),
-      error => console.log(error)
-    );
-    console.log(this.checkouts);
-    return this.http.put("http://localhost:3000/v1/compra/" , body)
+  DeleteCheckoutID(id){
+    console.log(id)
+    return this.http.delete("http://localhost:3000/v1/compra/" + id)
+  }
+
+  PutCheckoutLast(id, body) {
+    console.log(id)
+    return this.http.put("http://localhost:3000/v1/compra/" + id, body)
   }
 
   createCheckout(checkoutDetail: Checkout) {

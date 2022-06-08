@@ -10,13 +10,13 @@ import { CheckoutService } from '../services/checkout.service';
 export class CheckoutComponent implements OnInit {
 
   constructor(private CheckoutService: CheckoutService) { }
-
+  Checkouts;
   ngOnInit(): void {
     this.GetAllCheckouts()
   }
 
   GetAllCheckouts() {
-    this.CheckoutService.GetAllCheckouts().subscribe(checkouts => console.log(checkouts));
+    this.CheckoutService.GetAllCheckouts().subscribe(checkouts => this.Checkouts = checkouts);
   }
 
   modeUpdate: boolean = false;
@@ -29,7 +29,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   updateLast(checkoutDetail : NgForm){
-    this.CheckoutService.PutCheckoutLast(checkoutDetail)
+    this.CheckoutService.PutCheckoutLast(this.Checkouts[this.Checkouts.length - 1].id, checkoutDetail.form.value).subscribe(
+      data => console.log(data),
+      error => console.log(error)     );
     this.modeUpdate = this.CheckoutService.modeUpdate;
   }
 
@@ -39,11 +41,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   deleteLastCheckout(){
-    if(this.CheckoutService.checkouts.length){
-      this.CheckoutService.deleteLastCheckout();
-    } else {
-      this.closeModal = false;
-    }
+    this.CheckoutService.DeleteCheckoutID(this.Checkouts[this.Checkouts.length - 1].id).subscribe(
+      data => console.log(data),
+      error => console.log(error)     );
   }
 
   closeWarning(){
