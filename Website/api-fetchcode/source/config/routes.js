@@ -14,7 +14,6 @@ module.exports = (app) => {
       .all(app.config.passport.authenticate())
       .get(app.routes.utilizadores.getAll)
       .get(app.routes.utilizadores.getAllID)
-      //.get(app.routes.utilizadores.getAllName)
       .post(app.routes.utilizadores.create);
   
     app.route('/utilizador/:id')
