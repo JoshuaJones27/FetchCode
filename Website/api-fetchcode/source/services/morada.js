@@ -24,10 +24,8 @@ module.exports = (app) => {
     };
 
     /**Atualizar a morada selecionada */
-    const update = async (id) => {
-        //return app.db('morada').insert([newMorada, 'rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
-        const newMorada = {...req};
-        return app.db('morada').where( {id} ).insert(newMorada, ['rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
+    const update = async (id, morada) => {
+        return app.db('morada').where( {id} ).update(morada, ['rua', 'cidade', 'distrito', 'pais', 'CodigoPostal_id']);
     };
 
     /**Remover uma morada */

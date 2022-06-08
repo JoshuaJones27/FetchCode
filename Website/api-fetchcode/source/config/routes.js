@@ -103,7 +103,6 @@ module.exports = (app) => {
     .get(app.routes.tipoItens.getAll)
     .put(app.routes.tipoItens.update)
     .post(app.routes.tipoItens.create)
-    .put(app.routes.tipoItens.update)
     .delete(app.routes.tipoItens.remove);
     
     // TRANSPORTES

@@ -24,9 +24,8 @@ module.exports = (app) => {
     };
 
     /**Atualizar para um novo código postal */
-    const update = async (req, res) => {
-        const newCodigopostal = {...req};
-        return app.db('codigopostal').insert(newCodigopostal, ['codPostal']);
+    const update = async (id, codPostal) => {
+        return app.db('codigopostal').where({ id }).update(codPostal, ['codPostal']);
     };
 
     /**Remover um código postal */

@@ -20,9 +20,8 @@ module.exports = (app) => {
     };
 
     /**Atualizar o transporte selecionado */
-    const update = async (req, res) => {
-        const newTransporte = {...req};
-        return app.db('transporte').insert(newTransporte, ['dataTransporte']);
+    const update = async (id, transporte) => {
+        return app.db('transporte').where({ id }).update(transporte, ['dataTransporte']);
     };
 
     /**Remover um transporte */

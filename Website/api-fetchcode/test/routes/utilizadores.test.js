@@ -52,8 +52,7 @@ test('Test #1.2 - Listar os utilizadores por nome', () => {
 });
 
 test('Test #2 - Atualizar dados de um utilizador', () => {
-  return app.db('utilizador').insert({
-    // id: '9999',
+  return app.db('utilizador').update({
     nome: 'Jose Mourinho',
     nomeUtilizador: 'ZezitoMouri69',
     palavraPasse: 'Zezinho_6912322',

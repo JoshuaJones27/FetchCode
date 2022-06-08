@@ -31,15 +31,13 @@ module.exports = (app) => {
         if(!req.anoValidade) throw new ValidationError('O ano de validade é um campo obrigatorio');
         if(!req.cvv) throw new ValidationError('O CVV é um campo obrigatorio');
 
-
         const newCompra = {...req};
         return app.db('compra').insert(newCompra, ['nome', 'email', 'rua', 'cidade', 'distrito', 'codPostal', 'nomeCartao', 'cartaoCredito', 'mesValidade', 'anoValidade', 'cvv']);
     };
 
     /**Atualizar a compra selecionado */
-    const update = async (req, res) => {
-        const newCompra = {...req};
-        return app.db('compra').insert(newCompra, ['nome', 'email', 'rua', 'cidade', 'distrito', 'codPostal', 'nomeCartao', 'cartaoCredito', 'mesValidade', 'anoValidade', 'cvv']);
+    const update = async (id, compra) => {
+        return app.db('compra').where({ id }).update(compra, ['nome', 'email', 'rua', 'cidade', 'distrito', 'codPostal', 'nomeCartao', 'cartaoCredito', 'mesValidade', 'anoValidade', 'cvv']);
     };
 
     /**Remover uma compra */

@@ -53,10 +53,8 @@ module.exports = (app) => {
   };
 
   /**Atualizar o utilizador selecionado */
-  const update = async (req, res) => {
-    const newUser = {...req};
-
-    return app.db('utilizador').where(req).update(newUser, ['nome']);
+  const update = async (id, utilizador) => {
+    return app.db('utilizador').where({ id }).update(utilizador, ['nome', 'nomeUtilizador', 'palavraPasse', 'email', 'telemovel', 'rua', 'cidade', 'distrito', 'pais']);
   };
 
   /**Remover um utilizador */

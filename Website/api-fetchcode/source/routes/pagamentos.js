@@ -31,7 +31,7 @@ module.exports = (app) => {
     });
 
     router.delete('/:id', (req, res, next) => {
-        app.services.pagamento.remove(req.params.id)
+        app.services.pagamento.remove({ id: req.params.id })
           .then((result) => res.status(204).json(result[0]))
           .catch((err) => next(err));
     });

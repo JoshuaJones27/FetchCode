@@ -24,9 +24,8 @@ module.exports = (app) => {
     };
 
     /**Atualizar a cor selecionada */
-    const update = async (req, res) => {
-        const newCor = {...req};
-        return app.db('cor').insert(newCor, ['cor']);
+    const update = async (id, cor) => {
+        return app.db('cor').where({ id }).update(cor, ['cor']);
     };
 
     /**Remover uma cor */

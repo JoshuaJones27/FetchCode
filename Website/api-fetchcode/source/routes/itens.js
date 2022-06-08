@@ -22,7 +22,7 @@ module.exports = (app) => {
     });
 
     router.delete('/:id', (req, res, next) => {
-        app.services.item.remove({ tipoId: req.params.id })
+        app.services.item.remove({ id: req.params.id })
         .then((result) => res.status(204).json(result))
         .catch((err) => next(err));
     });
@@ -37,7 +37,7 @@ module.exports = (app) => {
     });
 
     router.put('/:id', (req, res, next) => {
-        app.services.item.update(req.params.id)
+        app.services.item.update(req.params.id, req.body)
           .then((result) => res.status(204).json(result[0]))
           .catch((err) => next(err));
     });

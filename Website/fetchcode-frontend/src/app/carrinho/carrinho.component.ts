@@ -11,11 +11,11 @@ export class CarrinhoComponent implements OnInit {
   constructor(private EncomendasService: EncomendasService) { }
 
   ngOnInit(): void {
-    this.GetAllEncomendas()
+    // this.GetAllEncomendas()
   }
 
-  GetAllEncomendas() {
-    this.EncomendasService.GetAllEncomendas().subscribe(encomendas => console.log(encomendas));
-  }
+  // GetAllEncomendas() {
+  //   this.EncomendasService.GetAllEncomendas().subscribe(encomendas => console.log(encomendas));
+  // }
 
 }

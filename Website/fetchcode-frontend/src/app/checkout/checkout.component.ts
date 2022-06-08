@@ -23,22 +23,13 @@ export class CheckoutComponent implements OnInit {
   closeModal: boolean = true;
 
   onSubmit(checkoutDetail: NgForm) {
-    this.CheckoutService.createCheckout(checkoutDetail.form.value)
-    this.modeUpdate = this.CheckoutService.modeUpdate;
-    checkoutDetail.reset();
-  }
-
-  startUpdateLast(checkoutDetail : NgForm){
-    if(this.CheckoutService.checkouts.length){
-      this.CheckoutService.startUpdateLast(checkoutDetail);
-      this.modeUpdate = this.CheckoutService.modeUpdate;
-    } else {
-      this.closeModal = false;
-    }
+    this.CheckoutService.PostCheckout(checkoutDetail.form.value).subscribe(
+      data => console.log(data),
+      error => console.log(error)     );
   }
 
   updateLast(checkoutDetail : NgForm){
-    this.CheckoutService.updateLast(checkoutDetail);
+    this.CheckoutService.PutCheckoutLast(checkoutDetail)
     this.modeUpdate = this.CheckoutService.modeUpdate;
   }
 

@@ -21,9 +21,8 @@ module.exports = (app) => {
     };
 
     /**Atualizar a encomenda selecionada */
-    const update = async (req, res) => {
-        const newEncomenda = {...req};
-        return app.db('encomenda').insert(newEncomenda, ['encomendaDescricao', 'estado', 'Transporte_id', 'Pagamento_id', 'Utilizador_idUtilizador']);
+    const update = async (id, encomenda) => {
+        return app.db('encomenda').where({ id }).insert(encomenda, ['encomendaDescricao', 'estado', 'Transporte_id', 'Pagamento_id', 'Utilizador_idUtilizador']);
     };
 
     /**Remover uma encomenda */

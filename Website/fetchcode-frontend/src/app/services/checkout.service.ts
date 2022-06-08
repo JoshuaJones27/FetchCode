@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Checkout } from './checkout';
 import { NgForm } from '@angular/forms';
+import { identifierName } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,24 @@ export class CheckoutService {
 
   constructor(private http: HttpClient) { }
 
-  checkouts: Checkout[] = [];
+  checkouts;
   modeUpdate: boolean = false;
 
   GetAllCheckouts() : Observable<unknown>{
     return this.http.get<unknown>("http://localhost:3000/v1/compra")
+  }
+
+  PostCheckout(body) {
+    return this.http.post("http://localhost:3000/v1/compra", body)
+  }
+
+  PutCheckoutLast(body) {
+    this.GetAllCheckouts().subscribe(
+      data => this.checkouts.push(data),
+      error => console.log(error)
+    );
+    console.log(this.checkouts);
+    return this.http.put("http://localhost:3000/v1/compra/" , body)
   }
 
   createCheckout(checkoutDetail: Checkout) {

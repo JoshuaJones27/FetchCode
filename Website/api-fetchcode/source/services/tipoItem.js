@@ -20,9 +20,8 @@ module.exports = (app) => {
     };
 
     /**Atualizar o tipo de item selecionado */
-    const update = async (req, res) => {
-        const newTipoItem = {...req};
-        return app.db('tipoitem').insert(newTipoItem, ['tipo']);
+    const update = async (id, tipoItem) => {
+        return app.db('tipoitem').where({ id }).update(tipoItem, ['tipo']);
     };
 
     /**Remover um tipo de item */

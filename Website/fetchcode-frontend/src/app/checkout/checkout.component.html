@@ -59,8 +59,7 @@
           <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
         </label>
         <input type="submit" value="Continue to Checkout" *ngIf="modeUpdate === false" class="btn">
-        <input value="Update last Checkout" class="btn-update"  *ngIf="modeUpdate === false" (click)="startUpdateLast(checkoutDetail)">
-        <input value="Update Checkout" class="btn" *ngIf="modeUpdate" (click)="updateLast(checkoutDetail)">
+        <input value="Update last Checkout" class="btn-update"  *ngIf="modeUpdate === false" (click)="updateLast(checkoutDetail)">
         <input value="Cancel Update Checkout" class="btn-update" *ngIf="modeUpdate" (click)="cancelUpdate(checkoutDetail)">
         <input value="Delete Last Checkout" class="btn-delete" *ngIf="!modeUpdate" (click)="deleteLastCheckout()">
       </form>

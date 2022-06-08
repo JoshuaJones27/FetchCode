@@ -21,9 +21,8 @@ module.exports = (app) => {
     };
 
     /**Atualizar o pagamento selecionado */
-    const update = async (req, res) => {
-        const newPagamento = {...req};
-        return app.db('pagamento').insert(newPagamento, ['pagamentoTipoID', 'encomendaID']);
+    const update = async (id, pagamento) => {
+        return app.db('pagamento').where({ id }).insert(pagamento, ['pagamentoTipoID', 'encomendaID']);
     };
 
     /**Remover um pagamento */
