@@ -31,7 +31,7 @@ module.exports = (app) => {
     });
 
     router.delete('/:id', (req, res, next) => {
-        app.services.morada.remove(req.params.id)
+        app.services.morada.remove(req.params.id, req.body)
           .then((result) => res.status(204).json(result[0]))
           .catch((err) => next(err));
     });
